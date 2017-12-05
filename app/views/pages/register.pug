@@ -1,0 +1,36 @@
+extends ../layouts/layout
+
+block head
+  title register
+block content
+  div.container
+    .row
+      div.col-sm-offset-2.col-sm-8.col-md-offset-2.col-md-8.col-lg-offset-2.col-lg-8
+        h2 bienvenu sur la page d'inscription
+        form
+          div.form-group
+            label(for="exampleInputEmail1") nom
+            input(type="email" class="form-control" placeholder="Email")
+
+          div.form-group
+            label(for="exampleInputEmail1") prenom
+            input(type="email" class="form-control" placeholder="Email")
+
+          div.form-group
+            label(for="exampleInputEmail1") Email
+            input(type="email" class="form-control" placeholder="Email")
+
+          div.form-group
+            label(for="password") Mot de passe
+            input(type="password" class="form-control" placeholder="Mot de passe")
+
+          div.form-group
+            label(for="password") Confirmation de mot de passe
+            input(type="password" class="form-control" placeholder="Confirmation mot de passe")
+
+          div.form-group
+            label(for="exampleInputFile") avatar 
+            input(type="file")
+            p(class="help-block")
+
+          button(type="submit" class="btn btn-info") Submit
