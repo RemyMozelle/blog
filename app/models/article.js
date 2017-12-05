@@ -1,10 +1,10 @@
 const db = require('../../config/database/database');
 
-const users = {
-  getOne() {
+const article = {
+  getArticles() {
     return new Promise((resolve, reject) => {
-      db.getConnection().query('SELECT * FROM users', (err, users) => {
-        err ? reject(err) : resolve(users)
+      db.getConnection().query('SELECT * FROM users', (err, article) => {
+        err ? reject(err) : resolve(article)
       });
     });
   },
@@ -14,4 +14,4 @@ const users = {
   }
 }
 
-module.exports = users;
+module.exports = article;

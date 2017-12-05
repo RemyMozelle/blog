@@ -1,3 +1,13 @@
-<!--  -->
 <%- contentFor('content') %>
-<h2>bienvenu sur la home</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <section>
+        <%- include('../includes/articles.ejs') %>
+      </section>  
+    </div>
+    <div class="col-md-4">
+      <%- include('../includes/profil_admin.ejs') %>
+    </div>
+  </div>
+</div>
