@@ -2,6 +2,12 @@ const mysql = require('mysql');
 const dotenv = require('dotenv').config({ path: '.env' });
 
 const db = {
+  /**
+   * 
+   * @param {*} env 
+   * si env = JAWSDB_URL
+   * alors il recupère la valeur de la variable d'environement
+   */
   getConnection(env) {
     if (env == 'JAWSDB_URL') {
       return mysql.createConnection(process.env.JAWSDB_URL);

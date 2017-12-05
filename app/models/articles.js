@@ -1,15 +1,15 @@
 const db = require('../../config/database/database');
 
 const article = {
-  getArticles() {
+  getAll() {
     return new Promise((resolve, reject) => {
-      db.getConnection().query('SELECT * FROM users', (err, article) => {
+      db.getConnection().query('SELECT * FROM articles', (err, article) => {
         err ? reject(err) : resolve(article)
       });
     });
   },
 
-  insertUsers() {
+  insertArticle() {
     database.getConnection().query('')
   }
 }
