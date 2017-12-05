@@ -7,6 +7,7 @@ const db = {
       return mysql.createConnection(process.env.JAWSDB_URL);
     } else {
       return mysql.createConnection({
+        
         host: 'localhost',
         database: 'blog',
         user: 'root',
