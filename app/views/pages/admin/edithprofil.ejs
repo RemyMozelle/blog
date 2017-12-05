@@ -1,0 +1,59 @@
+<%- contentFor('content') %>
+	<div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">
+		<div>
+			<a href="#"><strong><span class="fa fa-user-secret"></span> Éditer mon profil</strong></a>
+			<hr>			
+		</div>
+		<div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">
+			<form>
+				<div class="row">
+					<div class="col-md-8">
+						<div class="row">
+							<div class="form-group col-md-6">
+								<label for="lastname">Prénom</label>
+								<input type="text" class="form-control" id="lastname" placeholder="Prénom...">
+							</div>
+							<div class="form-group col-md-6">
+								<label for="surname">Nom</label>
+								<input type="text" class="form-control" id="surname" placeholder="Nom...">
+							</div>
+							<div class="form-group col-md-6">
+								<label for="pseudo">Pseudo</label>
+								<input type="text" class="form-control" id="pseudo" placeholder="Pseudo...">
+							</div>
+						</div>
+					</div>
+					<div class="form-group col-md-4">
+						<label for="avatar">Photo</label>
+						<input type="file" id="avatar">
+						<p class="help-block">Format .png .jpeg Maximum 2Mo.</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-md-6">
+						<label for="emailadress">Adresse mail</label>
+						<input type="text" class="form-control" id="emailadress" placeholder="email@adress.com">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="oldpassword">Ancien mot de passe</label>
+						<input type="text" class="form-control" id="oldpassword" placeholder="Ancien mot de passe">
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-md-6">
+						<label for="newpassword">Nouveau mot de passe</label>
+						<input type="text" class="form-control" id="newpassword" placeholder="Nouveau mot de passe">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="confirmpassword">Confirmation de mot de passe</label>
+						<input type="text" class="form-control" id="confirmpassword" placeholder="Confirmation de mot de passe">
+					</div>
+				</div>
+				<div class="text-center">
+					<button type="submit" class="btn btn-default">Annuler</button>
+					<button type="submit" class="btn btn-primary">Sauvegarder</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
