@@ -1,7 +1,7 @@
 const mysql = require('mysql');
-const dotenv = require('dotenv').config({ path: '.env' })
+const dotenv = require('dotenv').config({ path: '.env' });
 
-const database = {
+const db = {
   getConnection(env) {
     if (env == 'JAWSDB_URL') {
       return mysql.createConnection(process.env.JAWSDB_URL);
@@ -16,4 +16,4 @@ const database = {
   }
 }
 
-module.exports = database;
+module.exports = db;
