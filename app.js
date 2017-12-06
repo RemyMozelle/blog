@@ -1,12 +1,16 @@
-const dotenv = require('dotenv').config({ path: '.env' })
+const dotenv = require('dotenv').config({ path: '.env' });
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
+const cookieParser = require('cookie-parser');
+const expressValidator = require('express-validator');
+
 
 app.set('view engine', 'ejs');
 app.set('views', './app/views/layouts');
 
+app.use(expressValidator())
 app.use(expressLayouts);
 app.use(express.static(__dirname + '/node_modules/bootstrap/dist'));
 app.use(express.static(__dirname + '/public'));

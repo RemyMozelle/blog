@@ -3,6 +3,7 @@ const route = express.Router();
 
 const usersController = require('../../app/controllers/usersController');
 const articleController = require('../../app/controllers/articlesController');
+const expressValidator = require('express-validator');
 
 articleController.getAllArticle() // renvoie tous les articles
 usersController.getAllUsers() // renvoie tous les users
@@ -41,4 +42,39 @@ route.get('/edithprofil', (req, res) => {
 })
 // FIN ADMIN
 
+/**
+ * debut insertion des données
+ */
+const db = require('../database/database');
+
+route.post('/register', (req, res) => {
+
+  req.checkBody('name', 'le prenom ne peut être vide').notEmpty()
+  req.checkBody('surname', 'le nom ne peut être vide').notEmpty()
+  req.checkBody('email', 'l\'email ne peut être vide').notEmpty()
+  req.checkBody('password', 'le mot de passe ne peut être vide').notEmpty()
+
+  const error = req.validationErrors();
+
+  const data = {
+    name: req.body.name,
+    surname: req.body.surname,
+    email: req.body.email,
+    password: req.body.password
+  }
+
+  if (error) {
+    console.log(error, 'IF ERROR');
+    res.render('../pages/register.ejs', {
+      errors: error
+    })
+  } else {
+    db.getConnection().query('INSERT INTO users SET ?', data, (err, result) => {
+      console.log(error);
+      err ? console.log(err) : res.render('../pages/success.ejs');
+    })
+  }
+  
+  
+ })
 module.exports = route;
