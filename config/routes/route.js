@@ -4,7 +4,7 @@ const route = express.Router();
 const usersController = require('../../app/controllers/usersController');
 const articleController = require('../../app/controllers/articlesController');
 
-articleController.getAllArticle() // renvoie tous les articles
+articleController.getAllArticles() // renvoie tous les articles
 usersController.getAllUsers() // renvoie tous les users
 
 route.get('/', (req, res) => {
