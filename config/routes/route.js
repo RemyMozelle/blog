@@ -4,12 +4,14 @@ const route = express.Router();
 const usersController = require('../../app/controllers/usersController');
 const articleController = require('../../app/controllers/articlesController');
 const expressValidator = require('express-validator');
+const passport = require('passport');
 
 articleController.getAllArticle() // renvoie tous les articles
 usersController.getAllUsers() // renvoie tous les users
 
 route.get('/', (req, res) => {
   res.render('../pages/home.ejs')
+  console.log(req.isAuthenticated())
 })
 
 route.get('/register', (req, res) => {
@@ -55,26 +57,39 @@ route.post('/register', (req, res) => {
   req.checkBody('password', 'le mot de passe ne peut être vide').notEmpty()
 
   const error = req.validationErrors();
-
-  const data = {
-    name: req.body.name,
-    surname: req.body.surname,
-    email: req.body.email,
-    password: req.body.password
-  }
-
+  
   if (error) {
     console.log(error, 'IF ERROR');
     res.render('../pages/register.ejs', {
       errors: error
     })
   } else {
+
+    const data = {
+      name: req.body.name,
+      surname: req.body.surname,
+      email: req.body.email,
+      password: req.body.password
+    }
+
     db.getConnection().query('INSERT INTO users SET ?', data, (err, result) => {
-      console.log(error);
-      err ? console.log(err) : res.render('../pages/success.ejs');
+      if (err) throw err
+      const id = result.insertId
+      db.getConnection().query(`SELECT id from users where id=${id}`, (err, users) => {
+        req.login(users, (err) => {
+          if(err) throw err
+          res.redirect('/')
+        })
+      })
     })
-  }
-  
-  
- })
+  }  
+})
+ 
+passport.serializeUser(function (users, done) {
+  done(null, users);
+});
+
+passport.deserializeUser(function (users, done) {
+  done(null, users);
+});
 module.exports = route;
