@@ -18,6 +18,9 @@ route.get('/login', (req, res) => {
 })
 
 // ADMIN
+const articlesController = require('../../app/controllers/articlesController');
+articlesController.getAllArticles()
+
 route.get('/dashboard', (req, res) => {
   res.render('../pages/admin/dashboard.ejs', { layout: '../layouts/admin' });
 })
