@@ -2,8 +2,10 @@ const express = require('express');
 const route = express.Router();
 
 const usersController = require('../../app/controllers/usersController');
+const articleController = require('../../app/controllers/articlesController');
 
-console.log(usersController.getOneUser())
+articleController.getAllArticle() // renvoie tous les articles
+usersController.getAllUsers() // renvoie tous les users
 
 route.get('/', (req, res) => {
   res.render('../pages/home.ejs')

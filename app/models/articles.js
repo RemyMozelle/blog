@@ -9,7 +9,7 @@ const articles = {
     });
   },
 
-  insertUsers() {
+  insertArticle() {
     database.getConnection().query('')
   }
 }
