@@ -36,10 +36,15 @@ passport.use(new LocalStrategy({
   passwordField: 'password'
 },
   function (usernameField, passwordField, done) {
-    db.getConnection().query(`SELECT email from users where email = '${usernameField}'`, (err, res) => {
-      
+    db.getConnection().query(`SELECT email, password from users where email = '${usernameField}' && password = '${passwordField}'`, (err, result) => {
+      if (result.length === 0) {
+        return done(err)
+      } else {
+        return done(null, result)
+      }
+
+      return done(null, false)
     })
-    return done(null, false)
   }
 ));
 app.use(require('./config/routes/route'));

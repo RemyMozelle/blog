@@ -73,6 +73,11 @@ route.get('/login', (req, res) => {
   res.render('../pages/login.ejs');
 })
 
+route.get('/logout', (req, res) => {
+  req.logOut();
+  res.redirect('/');
+})
+
 passport.serializeUser(function (users, done) {
   done(null, users);
 });
