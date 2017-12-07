@@ -12,40 +12,54 @@
 </head>
 
 <body>
-  <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">Tableau de bord</a>
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown">
-						<a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="fa fa-user-circle"></i> Admin <span class="caret"></span></a>
-						<ul id="g-account-menu" class="dropdown-menu" role="menu">
-							<li><a href="#"><i class="fa fa-user-secret"></i> My Profile</a></li>
+	<div class="wrapper">
+		<div class="sidebar" id="bob" data-color="black" data-image="">
+			<div class="sidebar-wrapper">
+						<div class="logo">
+								<a href="#" class="simple-text">
+										BLOG
+								</a>
+						</div>
+						<ul class="nav">
+								<li class="active"><a href="/dashboard"><i class="fa fa-dashboard" aria-hidden="true"></i> <p>Gestion articles (X)</p></a></li>
+								<li><a href="/newarticle"><i class="fa fa-plus-square-o" aria-hidden="true"></i> <p>Créer article </p></a></li>
+								<li><a href="/published"><i class="fa fa-link" aria-hidden="true"></i> <p>Publié (X)</p></a></li>
+								<li><a href="/draft"><i class="fa fa-history" aria-hidden="true"></i> <p>Brouillon (X)</p></a></li>
 						</ul>
-					</li>
-					<li><a href="#"><i class="fa fa-sign-out"></i> Logout</a></li>
-				</ul>
+				</div>
+		</div>
+		<div class="main-panel">
+			<nav class="navbar navbar-default navbar-fixed">
+					<div class="container-fluid">
+							<div class="navbar-header">
+									<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+											<span class="sr-only">Toggle navigation</span>
+											<span class="icon-bar"></span>
+											<span class="icon-bar"></span>
+											<span class="icon-bar"></span>
+									</button>
+									<a class="navbar-brand" href="#">Tableau de bord</a>
+							</div>
+
+							<div class="collapse navbar-collapse">
+									<ul class="nav navbar-nav navbar-right ul-nav">
+											<li class="text-center"><a href="/edithprofil"><i class="fa fa-user-circle"></i> Admin </span></a></li>                            
+											<li class="text-center"><a href="#"><i class="fa fa-sign-out"></i> Logout</a></li>
+											<li class="separator hidden-lg hidden-md"></li>
+									</ul>
+							</div>
+					</div>
+			</nav>
+			<div class="col-xs-12 col-content">
+				<%- defineContent('content') %>
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
-		<ul class="nav nav-pills nav-stacked" style="border-right:1px solid black">
-			<li><a href="/dashboard"><i class="fa fa-dashboard"></i> Gestion des articles (X)</a></li>
-			<li><a href="/newarticle"><i class="fa fa-plus-square-o"></i> Créer un article </a></li>
-			<li><a href="/published"><i class="fa fa-link"></i> Publié (X)</a></li>
-			<li><a href="/draft"><i class="fa fa-history"></i> Non publié (X)</a></li>
-		</ul>
-	</div>
-  <%- defineContent('content') %>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>  
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>	
+	<!-- <script src="js/bootstrap.min.js"></script>   -->
+	<script src="js/admin.js"></script>
 </body>
 
 </html>
