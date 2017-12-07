@@ -62,11 +62,10 @@ route.post('/register', (req, res) => {
   }  
 })
 
-route.post('/login',
+route.post('/login',  
   passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: false
+    failureRedirect: '/login'
   })
 );
 

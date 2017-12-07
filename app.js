@@ -31,9 +31,16 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new LocalStrategy((email, password, done) => {
-  console.log(email);
-}))
-
+passport.use(new LocalStrategy({
+  usernameField: 'email',
+  passwordField: 'password'
+},
+  function (usernameField, passwordField, done) {
+    db.getConnection().query(`SELECT email from users where email = '${usernameField}'`, (err, res) => {
+      
+    })
+    return done(null, false)
+  }
+));
 app.use(require('./config/routes/route'));
 app.listen(process.env.PORT);
