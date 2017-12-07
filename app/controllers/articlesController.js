@@ -10,10 +10,10 @@ const articlesController = {
       } else {
         res.send('vous devez être connecté pour avoir accèes au articles ! ')
       }
-      
     }).catch(err => { console.log(err, ' une erreur sur articlesController') })
-      
-  }
+  },
+
+  
 }
 
 module.exports = articlesController;

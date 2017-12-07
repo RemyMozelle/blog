@@ -12,6 +12,7 @@ const passport = require('passport');
 // ADMIN
 route.get('/dashboard', adminController.dashboard)
 route.get('/newarticle', adminController.newarticle)
+route.post('/newArticle', adminController.getInsertArticle)
 route.get('/published', adminController.publish)
 route.get('/draft', adminController.draft)
 route.get('/updateprofil', adminController.updateProfile)
@@ -62,6 +63,8 @@ route.post('/register', (req, res) => {
   }  
 })
 
+
+// PARTI LOGIN
 route.post('/login',  
   passport.authenticate('local', {
     successRedirect: '/',
@@ -85,4 +88,7 @@ passport.serializeUser(function (users, done) {
 passport.deserializeUser(function (users, done) {
   done(null, users);
 });
+//END LOGIN
+
+
 module.exports = route;

@@ -9,8 +9,12 @@ const articles = {
     });
   },
 
-  insertArticle() {
-    database.getConnection().query('')
+  addArticle(insertArticle) {
+    return new Promise((resolve, reject) => {
+      db.getConnection().query('INSERT INTO articles SET ?', insertArticle, (err, article) => {
+        err ? reject(err) : resolve(article)
+      })
+    });
   }
 }
 
