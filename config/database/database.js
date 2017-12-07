@@ -20,6 +20,16 @@ const db = {
         password: 'root'
       })
     }
+  },
+
+  getOption() {
+    return options = {
+      host: 'localhost',
+      port: '3306',
+      password: 'root',
+      user: 'root',
+      database: 'blog',
+    }
   }
 }
 
