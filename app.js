@@ -42,7 +42,6 @@ passport.use(new LocalStrategy({
       } else {
         return done(null, result)
       }
-
       return done(null, false)
     })
   }
