@@ -12,13 +12,17 @@ const passport = require('passport');
 // ADMIN
 route.get('/dashboard', adminController.dashboard)
 route.get('/newarticle', adminController.newarticle)
-route.get('/published', adminController.publish)
+route.get('/published', adminController.published)
+route.get('/updateStatus/:id', adminController.updateStatus)
 route.get('/draft', adminController.draft)
-route.get('/updateprofil', adminController.updateProfile)
+route.get('/updateprofil', adminController.updateProfil)
+// route.post('/newarticle', adminController.insertArticle)
 // FIN ADMIN
 
 //PARTI FRONT
-route.get('/', articleController.getAllArticle);
+route.get('/', articleController.getLastArticles);
+route.get('/articles', articleController.getAllArticles);
+
 //FIN PARTI FRONT
 
 //debut insertion des données

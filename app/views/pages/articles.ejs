@@ -1,0 +1,55 @@
+<%- contentFor('content') %>
+  <div class="container">
+    <h1>Tous les articles :</h1>
+    <hr class="featurette-divider">
+    <!-- Création tous les 2 articles -->
+    <% for(let i=0; i<allArticles.length; i++){ %>
+      <% if(i%2 == 0){ %>
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">
+              <%= allArticles[i].title %>
+                <span class="text-muted"></span>
+            </h2>
+            <p class="lead">
+              <%= allArticles[i].content %>
+            </p>
+            <p>
+              <%= allArticles[i].createAt %>
+            </p>
+            <a href="#" class="btn btn-default" role="button">
+              <i class="fa fa-heart" aria-hidden="true"></i> 0
+              <i class="fa fa-commenting-o" aria-hidden="true"></i> 0
+            </a>
+          </div>
+          <div class="col-md-5">
+            <img class="featurette-image img-responsive center-block" src="/img/1.jpg" alt="articlePicture">
+          </div>
+        </div>
+        <% } else { %>
+          <div class="row featurette">
+            <div class="col-md-7 col-md-push-5">
+              <h2 class="featurette-heading">
+                <%= allArticles[i].title %>
+                  <span class="text-muted"></span>
+              </h2>
+              <p class="lead">
+                <%= allArticles[i].content %>
+              </p>
+              <p>
+                <%= allArticles[i].createAt %>
+              </p>
+              <a href="#" class="btn btn-default" role="button">
+                <i class="fa fa-heart" aria-hidden="true"></i> 0
+                <i class="fa fa-commenting-o" aria-hidden="true"></i> 0
+              </a>
+            </div>
+            <div class="col-md-5 col-md-pull-7">
+              <img class="featurette-image img-responsive center-block" src="/img/2.png" alt="articlePicture">
+            </div>
+          </div>
+          <% } %>
+            <hr class="featurette-divider">
+            <% } %>
+              <!-- /END THE FEATURETTES -->
+  </div>

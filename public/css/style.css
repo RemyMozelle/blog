@@ -1,0 +1,46 @@
+/* Couleurs principales
+VERT : #17bba0;
+BLEU : #2a3f54;
+ORANGE : #e75c21;
+*/
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+body{
+    font-family: "Nunito";
+}
+hr{
+    background: #aaa;
+    height: 1px;
+    margin: 10px 10px 0px 10px;
+}
+
+.navbar{
+    background: #2a3f54;
+    color: #17bba0;
+}
+
+.navbar a{
+    color: #17bba0 !important;
+}
+
+.navbar a:hover{
+    color: #e75c21 !important;
+}
+/*HOME*/
+.thumbnail{
+    border: 1px solid #17bba0;
+}
+/*FIN HOME*/
+
+/*ARTICLES*/
+.featurette-divider{
+    margin:20px 0px;
+}
+/*FIN ARTICLES*/
+
+footer{
+    margin-top: 30px;
+    padding: 20px 0px;
+    background: #2a3f54;
+    color: #17bba0;
+}
