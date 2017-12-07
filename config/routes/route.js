@@ -1,54 +1,32 @@
 const express = require('express');
 const route = express.Router();
-
+//require users, article, admin 
 const usersController = require('../../app/controllers/usersController');
 const articleController = require('../../app/controllers/articlesController');
+const adminController = require('../../app/controllers/adminController');
+// require express , passport
 const expressValidator = require('express-validator');
 const passport = require('passport');
 
-articleController.getAllArticle() // renvoie tous les articles
-usersController.getAllUsers() // renvoie tous les users
 
-route.get('/', (req, res) => {
-  res.render('../pages/home.ejs')
-  console.log(req.isAuthenticated())
-})
+// ADMIN
+route.get('/dashboard', adminController.dashboard)
+route.get('/newarticle', adminController.newarticle)
+route.get('/published', adminController.publish)
+route.get('/draft', adminController.draft)
+route.get('/updateprofil', adminController.updateProfile)
+// FIN ADMIN
+
+//PARTI FRONT
+route.get('/', articleController.getAllArticle);
+//FIN PARTI FRONT
+
+//debut insertion des données
+const db = require('../database/database');
 
 route.get('/register', (req, res) => {
   res.render('../pages/register.ejs')
 })
-
-route.get('/login', (req, res) => {
-  res.render('../pages/login.ejs')
-})
-
-// ADMIN
-route.get('/dashboard', (req, res) => {
-  res.render('../pages/admin/dashboard.ejs', { layout: '../layouts/admin' });
-})
-
-route.get('/newarticle', (req, res) => {
-  res.render('../pages/admin/newarticle.ejs', { layout: '../layouts/admin' })
-})
-
-route.get('/published', (req, res) => {
-  res.render('../pages/admin/published.ejs', { layout: '../layouts/admin' })
-})
-
-route.get('/draft', (req, res) => {
-  res.render('../pages/admin/draft.ejs', { layout: '../layouts/admin' })
-})
-
-route.get('/edithprofil', (req, res) => {
-  res.render('../pages/admin/edithprofil.ejs', { layout: '../layouts/admin' })
-})
-// FIN ADMIN
-
-/**
- * debut insertion des données
- */
-const db = require('../database/database');
-
 route.post('/register', (req, res) => {
 
   req.checkBody('name', 'le prenom ne peut être vide').notEmpty()
@@ -59,7 +37,6 @@ route.post('/register', (req, res) => {
   const error = req.validationErrors();
   
   if (error) {
-    console.log(error, 'IF ERROR');
     res.render('../pages/register.ejs', {
       errors: error
     })
@@ -84,7 +61,19 @@ route.post('/register', (req, res) => {
     })
   }  
 })
- 
+
+route.post('/login',
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: false
+  })
+);
+
+route.get('/login', (req, res) => {
+  res.render('../pages/login.ejs');
+})
+
 passport.serializeUser(function (users, done) {
   done(null, users);
 });
