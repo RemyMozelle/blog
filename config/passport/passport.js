@@ -2,14 +2,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const db = require('../database/database');
 
-
-function isAdmin(admin) {
-  if (admin === 'admin') {
-    console.log('u are admin');
-  } else {
-    console.log('u are users');
-  }
-}
+let isAdmin;
 
 passport.use(new LocalStrategy({
   usernameField: 'email',
