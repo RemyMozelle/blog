@@ -20,7 +20,7 @@ const adminController = {
 
   newarticle(req, res) {
     articles.getAll().then(articles => {
-      // if (req.isAuthenticated()) {
+      
         res.render('../pages/admin/newarticle.ejs',
           { 
             layout: '../layouts/admin',
@@ -103,20 +103,28 @@ const adminController = {
   // },
 
   getInsertArticle(req, res) {
+    /* if (!req.files) {
+      return res.status(400).send('No files were uploaded.');
+    }*/
 
+    let imgArticle = req.files.imgArticle
+    
     const insertArticle = {
       title : req.body.title,
       content: req.body.content,
       createAt: new Date(),
       users_id: 1, 
-      status: 0
+      status: 0,
+      img: imgArticle.name
     }
     
     articles.addArticle(insertArticle).then(result => {
       console.log("RESULT",result);
     }).catch(err => { console.log(err, 'ERROR ADD ARTICLE adminController (insertAticle)'); })
-
-    res.redirect('/newarticle');
+    
+    imgArticle.mv(`./public/img/imgArticles/${imgArticle.name}`, (err) => {
+      err ? console.log(err) : res.redirect('/newarticle')      
+    })
   },
 
   getUpdateStatus(req, res){

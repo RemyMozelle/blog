@@ -29,6 +29,9 @@ route.get('/articles/:id', articleController.getArticle);
 
 //debut insertion des données
 const db = require('../database/database');
+const isAdmin = require('../passport/passport');
+
+
 
 route.get('/register', (req, res) => {
   res.render('../pages/register.ejs')
@@ -67,7 +70,6 @@ route.post('/register', (req, res) => {
     })
   }  
 })
-
 
 // PARTI LOGIN
 route.post('/login',  
