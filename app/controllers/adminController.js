@@ -65,29 +65,28 @@ const adminController = {
 
 
   getInsertArticle(req, res) {
-    if (!req.files) {
+    /* if (!req.files) {
       return res.status(400).send('No files were uploaded.');
-    }
+    }*/
 
     let imgArticle = req.files.imgArticle
-    console.log(imgArticle.name);
-
-    imgArticle.mv(`./public/img/${imgArticle.name}`, (err) => {
-      err ? console.log(err) : res.send('uploadé')      
-    })
-
+    
     const insert = {
       title : req.body.title,
       content: req.body.content,
       createAt: new Date(),
       users_id: 1, 
-      status: 0
+      status: 0,
+      img: imgArticle.name
     }
-
+    
     articles.addArticle(insert).then(result => {
     }).catch(err => { console.log(err, 'ERROR ADD ARTICLE adminController (insertAticle)'); })
-/* 
-    res.redirect('/newarticle'); */
+    
+    imgArticle.mv(`./public/img/imgArticles/${imgArticle.name}`, (err) => {
+      err ? console.log(err) : res.redirect('/newarticle')      
+    })
+
   }
 }
 
