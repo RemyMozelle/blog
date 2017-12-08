@@ -78,7 +78,7 @@ route.get('/login', (req, res) => {
 
 route.get('/logout', (req, res) => {
   req.logOut();
-  res.redirect('/');
+  res.redirect('/login');
 })
 
 passport.serializeUser(function (users, done) {
