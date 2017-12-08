@@ -25,9 +25,9 @@
                   <td class="text-center">
                     <% if(element.status == 1){%>
                       <i class="fa fa-circle" style="color: green;"></i>
-                    <%} else {%>
-                      <i class="fa fa-circle" style="color: red;"></i>
-                    <%}%>
+                      <%} else {%>
+                        <i class="fa fa-circle" style="color: red;"></i>
+                        <%}%>
                   </td>
                   <td>
                     <p>
@@ -35,13 +35,20 @@
                     </p>
                   </td>
                   <td>
-                    <%= element.createAt%>
-                  </td>
-                  <td>
-                    <%= element.status%>
+                    <%= element.createAt.toString().substr(0, 15) %>
                   </td>
                   <td class="text-center">
-                    <i class="fa fa-pencil-square-o"></i>
+                    <% if (element.status == 0) { %>
+                      <a class="btn btn-success" href="/updateStatus/<%=element.id%>" role="button">Publier</a>
+                      <% } %>
+                        <% if (element.status == 1) { %>
+                          <a class="btn btn-danger reversible" href="/updateStatus/<%=element.id%>" role="button">Brouillon</a>
+                          <% } %>
+                  </td>
+                  <td class="text-center">
+                    <a href="/modify/<%= element.id%>">
+                      <i class="fa fa-pencil-square-o"></i>
+                    </a>
                   </td>
                   <td class="text-center">
                     <i class="fa fa-trash-o"></i>

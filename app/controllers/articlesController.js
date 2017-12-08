@@ -26,6 +26,22 @@ const articlesController = {
       
     }).catch(err => { console.log(err, ' une erreur sur articlesController') })
       
+  },
+
+  getArticle(req, res) {
+    articles.getAll().then(articles => {
+      articles.filter((articlefiltered) => {
+        if(articlefiltered.id == req.params.id){
+          if (req.isAuthenticated()) {
+            res.render('../pages/article.ejs', {
+              article: articlefiltered
+            })
+          } else {
+            res.send('vous devez être connecté pour avoir accèes au articles ! ')
+          }
+        }
+      }).catch(err => { console.log(err, ' une erreur sur articlesController') })
+    });  
   }
 
 }

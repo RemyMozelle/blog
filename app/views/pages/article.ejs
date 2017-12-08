@@ -1,0 +1,38 @@
+<%- contentFor('content') %>
+  <div class="container">
+    <!-- Example row of columns -->
+    <h1>Bonne lecture !</h1>
+    <div class="row">
+      <div class="col-xs-2"></div>
+      <div class="col-xs-8">
+        <img class="featurette-image img-responsive center-block" src="/img/1.jpg" alt="articlePicture">
+        <h2><%= article.title%></h2>
+        <p><%= article.content%></p>
+        <p><%= article.createAt.toString().substr(0, 15) %></p>
+        <p>
+          <a href="#" class="btn btn-default" role="button">
+            <i class="fa fa-heart" aria-hidden="true"></i> 0
+          </a>
+          <a class="btn btn-default btn-comment" disabled>
+            <i class="fa fa-commenting-o" aria-hidden="true"></i> 0
+          </a>
+        </p>
+      </div>
+      <div class="col-xs-2"></div>
+    </div>
+    <!-- COMMENTAIRES  uniquement pour les users connectés-->
+    <h1>Section commentaires</h1>
+    <div class="row">
+      <div class="col-xs-2"></div>
+      <div class="col-xs-8">
+        <form>
+          <div class="form-group">
+            <label for="commentaire">Commenter l'article :</label>
+            <input type="text" class="form-control" id="commentaire" placeholder="Commentaire...">
+          </div>
+          <button type="submit" class="btn btn-default">Envoyer &raquo;</button>
+        </form>
+      </div>
+      <div class="col-xs-2"></div>
+    </div>
+  </div>
