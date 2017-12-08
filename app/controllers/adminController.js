@@ -20,7 +20,7 @@ const adminController = {
 
   newarticle(req, res) {
     articles.getAll().then(articles => {
-      // if (req.isAuthenticated()) {
+      
         res.render('../pages/admin/newarticle.ejs',
           { 
             layout: '../layouts/admin',
@@ -63,46 +63,18 @@ const adminController = {
     }).catch(err => { console.log(err, ' une erreur sur articlesController') })
   },
 
-  // updateProfil(req, res) {
-  //   articles.getAll().then(articles => {
-  //     // if (req.isAuthenticated()) {
-  //       res.render('../pages/admin/updateprofil.ejs',
-  //         { 
-  //             layout: '../layouts/admin',
-  //             allArticles: articles        
-  //           }
-  //       )
-  //     // } else {
-  //     //   res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
-  //     // }
-  //   }).catch(err => { console.log(err, ' une erreur sur articlesController') })
-  // },
-
-  // updateStatus(req, res){
-  //   articles.getAll().then(allArticles => {
-  //     allArticles.filter((articlefiltered) => {
-  //       if(articlefiltered.id == req.params.id){
-  //         articles.remy().then(mireille => {
-  //           console.log(mireille);
-  //         })
-  //         // if (req.isAuthenticated()) {
-  //           if( articlefiltered.status == 1){
-  //             // admin.query("UPDATE posts SET status = :status", { status: 0 });
-  //           } else {
-  //             // admin.query("UPDATE posts SET status = :status", { status: 1 });
-  //           } 
-  //           res.redirect('../pages/admin/published.ejs')
-  //         // } else {
-  //           //   res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
-  //         // }
-  //       }
-  //     });
-  //   }).catch(err => { console.log(err, ' une erreur sur articlesController') })
-  // updateProfile(req, res) {
-  //   res.render('../pages/admin/updateprofil.ejs', { layout: '../layouts/admin' })
-  // },
 
   getInsertArticle(req, res) {
+    if (!req.files) {
+      return res.status(400).send('No files were uploaded.');
+    }
+
+    let imgArticle = req.files.imgArticle
+    console.log(imgArticle.name);
+
+    imgArticle.mv(`./public/img/${imgArticle.name}`, (err) => {
+      err ? console.log(err) : res.send('uploadé')      
+    })
 
     const insert = {
       title : req.body.title,
@@ -111,12 +83,11 @@ const adminController = {
       users_id: 1, 
       status: 0
     }
-    
-    articles.addArticle(insert).then(result => {
-      console.log(result);
-    }).catch(err => { console.log(err, 'ERROR ADD ARTICLE adminController (insertAticle)'); })
 
-    res.redirect('/newarticle');
+    articles.addArticle(insert).then(result => {
+    }).catch(err => { console.log(err, 'ERROR ADD ARTICLE adminController (insertAticle)'); })
+/* 
+    res.redirect('/newarticle'); */
   }
 }
 

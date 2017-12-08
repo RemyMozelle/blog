@@ -1,5 +1,5 @@
 const articles = require('../models/articles');
-
+const isAdmin = require('../../config/passport/passport');
 const articlesController = {
   getLastArticles(req, res) {
     articles.getAll().then(articles => {
