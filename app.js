@@ -3,13 +3,17 @@ const app = express();
 const dotenv = require('dotenv').config({ path: '.env' });
 const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
-const db = require('./config/database/database');
+
+//require pour la session / validation des données
 const session = require('express-session');
-const MySQLStore = require('express-mysql-session')(session);
-const expressValidator = require('express-validator');
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
 const cookieParser = require('cookie-parser');
+const passport = require('passport');
+const expressValidator = require('express-validator');
+const MySQLStore = require('express-mysql-session')(session);
+const db = require('./config/database/database')
+
+//recupère la strategie de passport
+const passports = require('./config/passport/passport');
 const sessionStore = new MySQLStore(db.getOption());
 
 app.set('view engine', 'ejs');
@@ -28,12 +32,9 @@ app.use(session({
   store: sessionStore,
   //cookie: { secure: true }
 }))
+
 app.use(passport.initialize());
 app.use(passport.session());
-
-passport.use(new LocalStrategy((email, password, done) => {
-  console.log(email);
-}))
 
 app.use(require('./config/routes/route'));
 app.listen(process.env.PORT);

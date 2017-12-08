@@ -13,9 +13,10 @@ const passport = require('passport');
 route.get('/dashboard', adminController.dashboard)
 route.get('/newarticle', adminController.newarticle)
 route.get('/published', adminController.published)
-route.get('/updateStatus/:id', adminController.updateStatus)
+// route.get('/updateStatus/:id', adminController.updateStatus)
+route.post('/newArticle', adminController.getInsertArticle)
 route.get('/draft', adminController.draft)
-route.get('/updateprofil', adminController.updateProfil)
+// route.get('/updateprofil', adminController.updateProfil)
 // route.post('/newarticle', adminController.insertArticle)
 // FIN ADMIN
 
@@ -66,16 +67,22 @@ route.post('/register', (req, res) => {
   }  
 })
 
-route.post('/login',
+
+// PARTI LOGIN
+route.post('/login',  
   passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: false
+    failureRedirect: '/login'
   })
 );
 
 route.get('/login', (req, res) => {
   res.render('../pages/login.ejs');
+})
+
+route.get('/logout', (req, res) => {
+  req.logOut();
+  res.redirect('/');
 })
 
 passport.serializeUser(function (users, done) {
@@ -85,4 +92,7 @@ passport.serializeUser(function (users, done) {
 passport.deserializeUser(function (users, done) {
   done(null, users);
 });
+//END LOGIN
+
+
 module.exports = route;
