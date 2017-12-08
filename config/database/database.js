@@ -12,8 +12,8 @@ const db = {
     if (env == 'JAWSDB_URL') {
       return mysql.createConnection(process.env.JAWSDB_URL);
     } else {
-      return mysql.createConnection({
-        
+      return mysql.createPool({
+        connectionLimit : 10,
         host: '127.0.0.1',
         database: 'blog',
         user: 'root',
