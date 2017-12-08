@@ -1,41 +1,55 @@
 <%- contentFor('content') %>
-	<div>
-		<a href="#"><strong><span class="fa fa-history"></span> Brouillons</strong></a>
-		<hr>
-	</div>
-	<div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">
-		<div class="content table-responsive table-full-width">
-			<table class="table table-hover">
-				<thead>
-					<th>Statut</th>
-					<th>Articles</th>
-					<th>Date de publication</th>
-					<th>Publication</th>
-					<th>Action Mod</th>
-					<th>Action Sup</th>
-				</thead>
-				<tbody>
-					<tr>
-						<td class="text-center">
-							<i class="fa fa-circle"></i>
-						</td>
-						<td>
-							Titre article
-						</td>
-						<td>
-							xx/xx/xx
-						</td>
-						<td>
-							PUBLIE
-						</td>
-						<td class="text-center">
-							<i class="fa fa-pencil-square-o"></i>
-						</td>
-						<td class="text-center">
-							<i class="fa fa-trash-o"></i>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>		
-	</div>
+  <div>
+    <a href="#">
+      <strong>
+        <span class="fa fa-history"></span> Brouillons</strong>
+    </a>
+    <hr>
+  </div>
+  <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">
+    <div class="content table-responsive table-full-width">
+      <table class="table table-hover">
+        <thead>
+          <th>Statut</th>
+          <th>Articles</th>
+          <th>Date de publication</th>
+          <th>Publication</th>
+          <th>Modifier</th>
+          <th>Supprimer</th>
+        </thead>
+        <tbody>
+          <% allArticles.forEach(function(element){ %>
+            <% if(element.status == 0){%>
+              <tr>
+                <td class="text-center">
+                  <i class="fa fa-circle" style="color: red;"></i>
+                </td>
+                <td>
+                  <p>
+                    <%= element.title%>
+                  </p>
+                </td>
+                <td>
+                  <%= element.createAt%>
+                </td>
+                <td class="text-center">
+                  <% if (element.status == 0) { %>
+                    <a class="btn btn-success" href="#" role="button">Publier</a>
+                  <% } %>
+                  <% if (element.status == 1) { %>
+                    <a class="btn btn-danger reversible" href="#" role="button">Brouillon</a>
+                  <% } %>
+                </td>
+                <td class="text-center">
+                  <i class="fa fa-pencil-square-o"></i>
+                </td>
+                <td class="text-center">
+                  <i class="fa fa-trash-o"></i>
+                </td>
+              </tr>
+              <%}%>
+                <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>

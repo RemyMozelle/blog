@@ -109,6 +109,10 @@ ORANGE : #e75c21;
     text-align: left;
  }
 
+ td{
+     padding-left: 8px !important;
+ }
+
 /*CSS autre*/
 
 
