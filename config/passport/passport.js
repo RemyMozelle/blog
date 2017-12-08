@@ -7,7 +7,7 @@ passport.use(new LocalStrategy({
   passwordField: 'password'
 },
   function (usernameField, passwordField, done) {
-    db.getConnection().query(`SELECT email, password from users where email = '${usernameField}' && password = '${passwordField}'`, (err, result) => {
+    db.getConnection().query(`SELECT email, password, role from users where email = '${usernameField}' && password = '${passwordField}'`, (err, result) => {
       if (result.length === 0) {
         return done(err)
       } else {
