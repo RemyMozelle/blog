@@ -12,20 +12,21 @@
                 <span class="text-muted"></span>
             </h2>
             <p class="lead">
-              <%= allArticles[i].content %>
+              <%= allArticles[i].content.substr(0,50) + "..."%>
             </p>
             <p>
-              <%= allArticles[i].createAt %>
+              <%= allArticles[i].createAt.toString().substr(0, 15) %>
             </p>
+            <a href="/articles/<%= allArticles[i].id%>" class="btn btn-primary" role="button">Read More</a>
             <a href="#" class="btn btn-default" role="button">
               <i class="fa fa-heart" aria-hidden="true"></i> 0
             </a>
-            <a href="#" class="btn btn-default" role="button"> 
+            <a class="btn btn-default btn-comment" disabled>
               <i class="fa fa-commenting-o" aria-hidden="true"></i> 0
             </a>
           </div>
           <div class="col-md-5">
-            <img class="featurette-image img-responsive center-block" src="/img/1.jpg" alt="articlePicture">
+            <img class="featurette-image img-responsive center-block" style="width:100%;height:250px" src="/img/imgArticles/<%= allArticles[i].img %>" alt="articlePicture">
           </div>
         </div>
       <% } else { %>
@@ -35,21 +36,22 @@
                 <%= allArticles[i].title %>
                   <span class="text-muted"></span>
               </h2>
-              <p class="lead">
-                <%= allArticles[i].content %>
+              <p class="lead" style="text-align:justify">
+                <%= allArticles[i].content.substr(0,50) + "..." %>
               </p>
               <p>
-                <%= allArticles[i].createAt %>
+                <%= allArticles[i].createAt.toString().substr(0, 15) %>
               </p>
+              <a href="/articles/<%= allArticles[i].id%>" class="btn btn-primary" role="button">Read More</a>
               <a href="#" class="btn btn-default" role="button">
                 <i class="fa fa-heart" aria-hidden="true"></i> 0
               </a>
-              <a href="#" class="btn btn-default" role="button">                  
+              <a class="btn btn-default btn-comment" disabled>
                 <i class="fa fa-commenting-o" aria-hidden="true"></i> 0
               </a>
             </div>
             <div class="col-md-5 col-md-pull-7">
-              <img class="featurette-image img-responsive center-block" src="/img/2.png" alt="articlePicture">
+              <img class="featurette-image img-responsive center-block" style="width:100%;height:250px" src="/img/imgArticles/<%= allArticles[i].img %>" alt="articlePicture">
             </div>
           </div>
         <% } %>

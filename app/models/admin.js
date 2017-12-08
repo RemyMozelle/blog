@@ -4,7 +4,7 @@ const expressValidator = require('express-validator');
 const admin = {
   getAll() {
     return new Promise((resolve, reject) => {
-      db.getConnection().query('SELECT * FROM users WHERE roles=admin', (err, users) => {
+      db.getConnection().query("SELECT * FROM users WHERE roles='admin'", (err, users) => {
         err ? reject(err) : resolve(users)
       });
     });
@@ -39,7 +39,40 @@ const admin = {
       })
     }
 
-  }
+  },
+
+  deleteArticle() {
+    const error = req.validationErrors();
+
+    if (error) {
+      res.render('../pages/register.ejs', {
+        errors: error
+      })
+    } else {
+
+      db.getConnection().query('INSERT INTO articles SET ?', data, (err, result) => {
+        if (err) throw err
+        const id = result.insertId
+        db.getConnection().query(`SELECT id from articles where id=${id}`, (err, newArticle) => {
+          req.login(newArticle, (err) => {
+            if (err) throw err
+            res.redirect('/dashboard')
+          })
+        })
+      })
+    }
+
+  },
+
+  // updateStatus(){
+  //   return new Promise((resolve, reject) => {
+  //     db.getConnection().query('UPDATE INTO articles SET ?', updateStatus, (err, article) => {
+  //                 admin.query("UPDATE articles SET status ?", { status: 0 });
+
+  //       err ? reject(err) : resolve(article)
+  //     })
+  //   });
+  // }
 
 }
 

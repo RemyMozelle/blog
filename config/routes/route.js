@@ -14,18 +14,24 @@ route.get('/published', adminController.published)
 // route.get('/updateStatus/:id', adminController.updateStatus)
 route.post('/newArticle', adminController.getInsertArticle)
 route.get('/draft', adminController.draft)
-// route.get('/updateprofil', adminController.updateProfil)
+route.get('/delete/:id', adminController.deleteArticle)
+// route.get('/modify/:id', adminController.modifyArticle)
+route.get('/updateprofil', adminController.updateProfil)
 // route.post('/newarticle', adminController.insertArticle)
 // FIN ADMIN
 
-//PARTI FRONT
+//FRONT
 route.get('/', articleController.getLastArticles);
 route.get('/articles', articleController.getAllArticles);
+route.get('/articles/:id', articleController.getArticle);
 
-//FIN PARTI FRONT
+//FIN FRONT
 
 //debut insertion des données
 const db = require('../database/database');
+const isAdmin = require('../passport/passport');
+
+
 
 route.get('/register', (req, res) => {
   res.render('../pages/register.ejs')
@@ -64,7 +70,6 @@ route.post('/register', (req, res) => {
     })
   }  
 })
-
 
 // PARTI LOGIN
 route.post('/login',  

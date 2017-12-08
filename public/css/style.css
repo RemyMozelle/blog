@@ -13,7 +13,6 @@ hr{
     height: 1px;
     margin: 10px 10px 0px 10px;
 }
-
 .navbar{
     background: #2a3f54;
     color: #17bba0;
@@ -26,10 +25,33 @@ hr{
 .navbar a:hover{
     color: #e75c21 !important;
 }
+
+.btn-comment, .border-comment:hover{
+    border-color: white !important;
+    cursor: default !important;
+}
+
+.apercu {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /*HOME*/
 .thumbnail{
-    border: 1px solid #17bba0;
+    border: none;
+    height: 450px;
+    padding: 0px;
 }
+
+.thumbnail-aside{
+    height: auto;
+}
+
+.img-article-apercu{
+    border-radius: 2%;
+}
+
 /*FIN HOME*/
 
 /*ARTICLES*/

@@ -30,15 +30,15 @@
                   </p>
                 </td>
                 <td>
-                  <%= element.createAt%>
+                  <%= element.createAt.toString().substr(0, 15) %>
                 </td>
                 <td class="text-center">
                   <% if (element.status == 0) { %>
                     <a class="btn btn-success" href="#" role="button">Publier</a>
-                  <% } %>
-                  <% if (element.status == 1) { %>
-                    <a class="btn btn-danger reversible" href="#" role="button">Brouillon</a>
-                  <% } %>
+                    <% } %>
+                      <% if (element.status == 1) { %>
+                        <a class="btn btn-danger reversible" href="#" role="button">Brouillon</a>
+                        <% } %>
                 </td>
                 <td class="text-center">
                   <i class="fa fa-pencil-square-o"></i>
