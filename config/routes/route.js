@@ -7,8 +7,6 @@ const adminController = require('../../app/controllers/adminController');
 // require express , passport
 const expressValidator = require('express-validator');
 const passport = require('passport');
-
-
 // ADMIN
 route.get('/dashboard', adminController.dashboard)
 route.get('/newarticle', adminController.newarticle)
@@ -85,7 +83,7 @@ route.get('/login', (req, res) => {
 
 route.get('/logout', (req, res) => {
   req.logOut();
-  res.redirect('/');
+  res.redirect('/login');
 })
 
 passport.serializeUser(function (users, done) {

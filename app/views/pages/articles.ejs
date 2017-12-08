@@ -3,7 +3,7 @@
     <h1>Tous les articles :</h1>
     <hr class="featurette-divider">
     <!-- Création tous les 2 articles -->
-    <% for(let i=0; i<allArticles.length; i++){ %>
+    <% for(let i=0; i < allArticles.length; i++){ %>
       <% if(i%2 == 0){ %>
         <div class="row featurette">
           <div class="col-md-7">
@@ -29,7 +29,7 @@
             <img class="featurette-image img-responsive center-block" src="/img/1.jpg" alt="articlePicture">
           </div>
         </div>
-        <% } else { %>
+      <% } else { %>
           <div class="row featurette">
             <div class="col-md-7 col-md-push-5">
               <h2 class="featurette-heading">
@@ -54,8 +54,8 @@
               <img class="featurette-image img-responsive center-block" src="/img/2.png" alt="articlePicture">
             </div>
           </div>
-          <% } %>
-            <hr class="featurette-divider">
-            <% } %>
+        <% } %>
+          <hr class="featurette-divider">
+    <% } %>
               <!-- /END THE FEATURETTES -->
   </div>
