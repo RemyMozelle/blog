@@ -11,7 +11,7 @@ const passport = require('passport');
 route.get('/dashboard', adminController.dashboard)
 route.get('/newarticle', adminController.newarticle)
 route.get('/published', adminController.published)
-// route.get('/updateStatus/:id', adminController.updateStatus)
+route.get('/updateStatus/:id', adminController.updateStatus)
 route.post('/newArticle', adminController.getInsertArticle)
 route.get('/draft', adminController.draft)
 route.get('/delete/:id', adminController.deleteArticle)

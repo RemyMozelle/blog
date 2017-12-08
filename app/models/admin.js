@@ -10,6 +10,14 @@ const admin = {
     });
   },
 
+  updatePublish(articles, id){
+    return new Promise((resolve, reject) => {
+      db.getConnection().query(`UPDATE articles SET status = ? WHERE id = ?`, [articles, id], (err, users) => {
+        err ? reject(err) : resolve(users)
+      });
+    });
+  },
+
   insertArticle() {
     req.checkBody('title', 'le prenom ne peut être vide').notEmpty()
     req.checkBody('content', 'l\'email ne peut être vide').notEmpty()

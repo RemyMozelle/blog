@@ -78,29 +78,27 @@ const adminController = {
     }).catch(err => { console.log(err, ' une erreur sur articlesController') })
   },
 
-  // updateStatus(req, res){
-  //   articles.getAll().then(allArticles => {
-  //     allArticles.filter((articlefiltered) => {
-  //       if(articlefiltered.id == req.params.id){
-  //         articles.remy().then(mireille => {
-  //           console.log(mireille);
-  //         })
-  //         // if (req.isAuthenticated()) {
-  //           if( articlefiltered.status == 1){
-  //             // admin.query("UPDATE posts SET status = :status", { status: 0 });
-  //           } else {
-  //             // admin.query("UPDATE posts SET status = :status", { status: 1 });
-  //           } 
-  //           res.redirect('../pages/admin/published.ejs')
-  //         // } else {
-  //           //   res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
-  //         // }
-  //       }
-  //     });
-  //   }).catch(err => { console.log(err, ' une erreur sur articlesController') })
-  // updateProfile(req, res) {
-  //   res.render('../pages/admin/updateprofil.ejs', { layout: '../layouts/admin' })
-  // },
+  updateStatus(req, res){
+    //récupère tous les articles
+    articles.getAll().then(updateStatus => {
+      //filtre les articles selon id passé en url
+      updateStatus.filter(articleFiltered => {
+        if(req.params.id == articleFiltered.id) {
+          //si url en GET == a l'ID articleFiltered on change son status
+          if(articleFiltered.status === 1) {
+            admin.updatePublish(0, articleFiltered.id).then(result => {
+              res.redirect('/dashboard')
+            }).catch(err => {console.log(err, "updateStatus problème");})
+          } else {
+            //passe le status a 1
+            admin.updatePublish(1, articleFiltered.id).then(result => {
+              res.redirect('/dashboard')
+            }).catch(err => {console.log(err, "updateStatus problème");})
+          }
+        }
+      })
+    }).catch(err => {console.log(err, 'error sur update status')})
+  },
 
   getInsertArticle(req, res) {
     /* if (!req.files) {
@@ -126,40 +124,6 @@ const adminController = {
       err ? console.log(err) : res.redirect('/newarticle')      
     })
   },
-
-  getUpdateStatus(req, res){
-
-    const statusToUpdate = {
-      title : req.body.title,
-      content: req.body.content,
-      createAt: new Date(),
-      users_id: 1, 
-      status: 0
-    }
-    
-    articles.addArticle(insertArticle).then(result => {
-      console.log("RESULT",result);
-    }).catch(err => { console.log(err, 'ERROR ADD ARTICLE adminController (insertAticle)'); })
-
-    res.redirect('/newarticle');
-  },
-  
-  // modifyArticle(req, res) {
-  //   articles.getAll().then(articles => {
-  //     articles.filter((articlefiltered) => {
-  //       if(articlefiltered.id == req.params.id){
-  //         if (req.isAuthenticated()) {
-  //           res.render('../pages/admin/modify.ejs', {
-  //             layout: '../layouts/admin',              
-  //             article: articlefiltered
-  //           })
-  //         } else {
-  //           res.send('vous devez être connecté pour avoir accèes au articles ! ')
-  //         }
-  //       }
-  //     }).catch(err => { console.log(err, ' une erreur sur articlesController') })
-  //   });  
-  // },
 
   deleteArticle(req,res){
     articles.getAll().then(articles => {
