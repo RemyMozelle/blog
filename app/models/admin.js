@@ -46,7 +46,14 @@ const admin = {
         })
       })
     }
+  },
 
+  modify(articles, id){
+    return new Promise((resolve, reject) => {
+      db.getConnection().query(`UPDATE articles SET ? WHERE id = ?`, [articles, id], (err, users) => {
+        err ? reject(err) : resolve(users)
+      });
+    });
   },
 
   deleteArticle() {
