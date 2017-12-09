@@ -8,6 +8,12 @@ ORANGE : #e75c21;
 body{
     font-family: "Nunito";
 }
+
+img{
+    height: 250px !important;
+    border-radius: 2%;    
+}
+
 hr{
     background: #aaa;
     height: 1px;
