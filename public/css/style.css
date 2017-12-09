@@ -19,6 +19,12 @@ img{
     background: #f1f1f1;
 } 
 
+.btn-default, .btn-default:hover{
+    background-color: transparent;
+    border-color: transparent;
+    cursor: default;    
+}
+
 hr{
     background: #aaa;
     height: 1px;
@@ -40,7 +46,8 @@ hr{
 }
 
 .btn-comment, .border-comment:hover{
-    border-color: white !important;
+    background-color: transparent !important;    
+    border-color: transparent !important;
     cursor: default !important;
 }
 

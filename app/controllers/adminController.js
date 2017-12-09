@@ -4,77 +4,79 @@ const db = require('../../config/database/database');
 
 const adminController = {
   dashboard(req, res) {
+    // console.log("REQ ", req.user)
     articles.getAll().then(articles => {
-      // if (req.isAuthenticated()) {
-      res.render('../pages/admin/dashboard.ejs',
-        {
-          layout: '../layouts/admin',
-          allArticles: articles
-        }
-      )
-      // } else {
-      //   res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
-      // }
+      if (req.isAuthenticated()) {
+        res.render('../pages/admin/dashboard.ejs',
+          {
+            layout: '../layouts/admin',
+            allArticles: articles,
+            curentUser: req.user
+          }
+        )
+      } else {
+        res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
+      }
     }).catch(err => { console.log(err, ' une erreur sur articlesController') })
   },
 
   newarticle(req, res) {
     articles.getAll().then(articles => {
-
-      res.render('../pages/admin/newarticle.ejs',
-        {
-          layout: '../layouts/admin',
-          allArticles: articles
-        }
-      )
-      // } else {
-      //   res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
-      // }
+      if (req.isAuthenticated()) {
+        res.render('../pages/admin/newarticle.ejs',
+          {
+            layout: '../layouts/admin',
+            allArticles: articles
+          }
+        )
+      } else {
+        res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
+      }
     }).catch(err => { console.log(err, ' une erreur sur articlesController') })
   },
 
   published(req, res) {
     articles.getAll().then(articles => {
-      // if (req.isAuthenticated()) {
-      res.render('../pages/admin/published.ejs',
-        {
-          layout: '../layouts/admin',
-          allArticles: articles
-        }
-      )
-      // } else {
-      //   res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
-      // }
+      if (req.isAuthenticated()) {
+        res.render('../pages/admin/published.ejs',
+          {
+            layout: '../layouts/admin',
+            allArticles: articles
+          }
+        )
+      } else {
+        res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
+      }
     }).catch(err => { console.log(err, ' une erreur sur articlesController') })
   },
 
   draft(req, res) {
     articles.getAll().then(articles => {
-      // if (req.isAuthenticated()) {
-      res.render('../pages/admin/draft.ejs',
-        {
-          layout: '../layouts/admin',
-          allArticles: articles
-        }
-      )
-      // } else {
-      //   res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
-      // }
+      if (req.isAuthenticated()) {
+        res.render('../pages/admin/draft.ejs',
+          {
+            layout: '../layouts/admin',
+            allArticles: articles
+          }
+        )
+      } else {
+        res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
+      }
     }).catch(err => { console.log(err, ' une erreur sur articlesController') })
   },
 
   updateProfil(req, res) {
     admin.getAll().then(adminAll => {
-      // if (req.isAuthenticated()) {
-      res.render('../pages/admin/updateprofil.ejs',
-        {
-          layout: '../layouts/admin',
-          profil: adminAll
-        }
-      )
-      // } else {
-      //   res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
-      // }
+      if (req.isAuthenticated()) {
+        res.render('../pages/admin/updateprofil.ejs',
+          {
+            layout: '../layouts/admin',
+            profil: adminAll
+          }
+        )
+      } else {
+        res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
+      }
     }).catch(err => { console.log(err, ' une erreur sur articlesController') })
   },
 
@@ -143,7 +145,7 @@ const adminController = {
    * @param {*} res 
    */
   modifyArticle(req, res) {
-    const  imgArticle = req.files.imgArticle
+    const imgArticle = req.files.imgArticle
     console.log(imgArticle);
     const updateArticle = {
       title: req.body.title,
@@ -162,7 +164,7 @@ const adminController = {
             imgArticle.mv(`./public/img/imgArticles/${imgArticle.name}`, (err) => {
               err ? console.log(err) : res.redirect('/dashboard')
             })
-          }).catch(err =>  {console.log(err, ' impossible de modifié cette article')})
+          }).catch(err => { console.log(err, ' impossible de modifié cette article') })
         }
       })
     })

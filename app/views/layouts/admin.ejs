@@ -24,7 +24,9 @@
           <li class="active">
             <a href="/dashboard">
               <i class="fa fa-dashboard" aria-hidden="true"></i>
-              <p>Gestion articles (X)</p>
+              <p>Gestion articles (
+                <%= allArticles.length%>
+                )</p>
             </a>
           </li>
           <li>
@@ -36,13 +38,30 @@
           <li>
             <a href="/published">
               <i class="fa fa-link" aria-hidden="true"></i>
-              <p>Publié (X)</p>
+              <p>Publié (
+                <% let tabPublished = [];%>
+                  <% allArticles.forEach(element => {%>
+                    <%if(element.status == 1){%>
+                      <%tabPublished.push(element)%>
+                        <%}%>
+                          <%});%>
+                          <%= tabPublished.length%>
+                            )</p>
             </a>
           </li>
           <li>
             <a href="/draft">
               <i class="fa fa-history" aria-hidden="true"></i>
-              <p>Brouillon (X)</p>
+              <p>Brouillon (
+                <% let tabDraft = [];%>
+                  <% allArticles.forEach(element => {%>
+                    <%if(element.status == 0){%>
+                      <%tabDraft.push(element)%>
+                        <%}%>
+                          <%});%>
+                          <%= tabDraft.length%>
+                            )
+              </p>
             </a>
           </li>
         </ul>
