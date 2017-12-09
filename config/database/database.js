@@ -12,25 +12,24 @@ const db = {
     if (env == 'JAWSDB_URL') {
       return mysql.createConnection(process.env.JAWSDB_URL);
     } else {
-      return mysql.createConnection({
-        
-        host: 'localhost',
+      return mysql.createPool({
+        connectionLimit : 10,
+        host: '127.0.0.1',
         database: 'blog',
         user: 'root',
-        password: 'root'
+        password: ''
       })
     }
   },
 
   getOption() {
     return options = {
-      host: 'localhost',
+      host: '127.0.0.1',
       port: '3306',
-      password: 'root',
+      password: '',
       user: 'root',
       database: 'blog',
     }
   }
 }
-
 module.exports = db;

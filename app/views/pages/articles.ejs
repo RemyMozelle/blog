@@ -4,32 +4,7 @@
     <hr class="featurette-divider">
     <!-- Création tous les 2 articles -->
     <% for(let i=0; i < allArticles.length; i++){ %>
-      <% if(i%2 == 0){ %>
-        <div class="row featurette">
-          <div class="col-md-7">
-            <h2 class="featurette-heading">
-              <%= allArticles[i].title %>
-                <span class="text-muted"></span>
-            </h2>
-            <p class="lead">
-              <%= allArticles[i].content.substr(0,50) + "..."%>
-            </p>
-            <p>
-              <%= allArticles[i].createAt.toString().substr(0, 15) %>
-            </p>
-            <a href="/articles/<%= allArticles[i].id%>" class="btn btn-primary" role="button">Read More</a>
-            <a href="#" class="btn btn-default" role="button">
-              <i class="fa fa-heart" aria-hidden="true"></i> 0
-            </a>
-            <a class="btn btn-default btn-comment" disabled>
-              <i class="fa fa-commenting-o" aria-hidden="true"></i> 0
-            </a>
-          </div>
-          <div class="col-md-5">
-            <img class="featurette-image img-responsive center-block" style="width:100%;height:250px" src="/img/imgArticles/<%= allArticles[i].img %>" alt="articlePicture">
-          </div>
-        </div>
-      <% } else { %>
+      
           <div class="row featurette">
             <div class="col-md-7 col-md-push-5">
               <h2 class="featurette-heading">
@@ -54,8 +29,8 @@
               <img class="featurette-image img-responsive center-block" style="width:100%;height:250px" src="/img/imgArticles/<%= allArticles[i].img %>" alt="articlePicture">
             </div>
           </div>
-        <% } %>
           <hr class="featurette-divider">
-    <% } %>
+        <% } %>
+          
               <!-- /END THE FEATURETTES -->
   </div>
