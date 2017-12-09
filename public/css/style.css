@@ -7,7 +7,11 @@ ORANGE : #e75c21;
 
 body{
     font-family: "Nunito";
+    background: #dcdcdc;
 }
+.mesArticles {
+    background: #f1f1f1;
+} 
 hr{
     background: #aaa;
     height: 1px;
@@ -16,6 +20,8 @@ hr{
 .navbar{
     background: #2a3f54;
     color: #17bba0;
+    border: 0px;
+    border-radius: 0px;
 }
 
 .navbar a{
