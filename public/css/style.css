@@ -141,3 +141,9 @@ footer{
     margin-top: 0px;
     margin-left: 12px;
 }
+
+.btn-bleu {
+    border-color: #2a3f54;
+    background-color: #2a3f54;
+    color: #fff;
+}
