@@ -6,77 +6,115 @@ const adminController = {
   dashboard(req, res) {
     // console.log("REQ ", req.user)
     articles.getAll().then(articles => {
-      if (req.isAuthenticated()) {
-        res.render('../pages/admin/dashboard.ejs',
-          {
-            layout: '../layouts/admin',
-            allArticles: articles,
-            curentUser: req.user
+      admin.getAll().then(adminAll => {
+        adminAll.filter(adminfiltered => {
+          if (adminfiltered.email == req.user[0].email) {
+            if (req.isAuthenticated()) {
+              res.render('../pages/admin/dashboard.ejs',
+                {
+                  layout: '../layouts/admin',
+                  allArticles: articles,
+                  profil: adminfiltered
+                }
+              )
+            } else {
+              res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
+            }
           }
-        )
-      } else {
-        res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
-      }
+        })
+      })
     }).catch(err => { console.log(err, ' une erreur sur articlesController') })
   },
 
   newarticle(req, res) {
     articles.getAll().then(articles => {
-      if (req.isAuthenticated()) {
-        res.render('../pages/admin/newarticle.ejs',
-          {
-            layout: '../layouts/admin',
-            allArticles: articles
+      admin.getAll().then(adminAll => {
+        adminAll.filter(adminfiltered => {
+          if (adminfiltered.email == req.user[0].email) {
+            if (req.isAuthenticated()) {
+              res.render('../pages/admin/newarticle.ejs',
+                {
+                  layout: '../layouts/admin',
+                  allArticles: articles,
+                  profil: adminfiltered
+                }
+              )
+            } else {
+              res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
+            }
           }
-        )
-      } else {
-        res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
-      }
+        })
+      })
     }).catch(err => { console.log(err, ' une erreur sur articlesController') })
   },
 
   published(req, res) {
     articles.getAll().then(articles => {
-      if (req.isAuthenticated()) {
-        res.render('../pages/admin/published.ejs',
-          {
-            layout: '../layouts/admin',
-            allArticles: articles
+      admin.getAll().then(adminAll => {
+        adminAll.filter(adminfiltered => {
+          if (adminfiltered.email == req.user[0].email) {
+            if (req.isAuthenticated()) {
+              res.render('../pages/admin/published.ejs',
+                {
+                  layout: '../layouts/admin',
+                  allArticles: articles,
+                  profil: adminfiltered
+                }
+              )
+            } else {
+              res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
+            }
           }
-        )
-      } else {
-        res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
-      }
+        })
+      })
     }).catch(err => { console.log(err, ' une erreur sur articlesController') })
   },
 
   draft(req, res) {
     articles.getAll().then(articles => {
-      if (req.isAuthenticated()) {
-        res.render('../pages/admin/draft.ejs',
-          {
-            layout: '../layouts/admin',
-            allArticles: articles
+      admin.getAll().then(adminAll => {
+        adminAll.filter(adminfiltered => {
+          if (adminfiltered.email == req.user[0].email) {
+            if (req.isAuthenticated()) {
+              res.render('../pages/admin/draft.ejs',
+                {
+                  layout: '../layouts/admin',
+                  allArticles: articles,
+                  profil: adminfiltered
+                }
+              )
+            } else {
+              res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
+            }
           }
-        )
-      } else {
-        res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
-      }
+        })
+      })
     }).catch(err => { console.log(err, ' une erreur sur articlesController') })
   },
 
   updateProfil(req, res) {
-    admin.getAll().then(adminAll => {
-      if (req.isAuthenticated()) {
-        res.render('../pages/admin/updateprofil.ejs',
-          {
-            layout: '../layouts/admin',
-            profil: adminAll
+    // console.log("REQ USER ",req.user[0].email)
+    // Besoin des articles pour les comptabiliser dans le menu admin
+    articles.getAll().then(articles => {
+      //récupère tous les admin
+      admin.getAll().then(adminAll => {
+        // filtre tous les admin selon l'adressemail
+        adminAll.filter(adminfiltered => {
+          if (adminfiltered.email == req.user[0].email) {
+            if (req.isAuthenticated()) {
+              res.render('../pages/admin/updateprofil.ejs',
+                {
+                  layout: '../layouts/admin',
+                  profil: adminfiltered,
+                  allArticles: articles,
+                }
+              )
+            } else {
+              res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
+            }
           }
-        )
-      } else {
-        res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
-      }
+        })
+      })
     }).catch(err => { console.log(err, ' une erreur sur articlesController') })
   },
 
@@ -127,14 +165,23 @@ const adminController = {
   },
 
   getModifyArticle(req, res) {
-    articles.getAll().then(allArticles => {
-      allArticles.filter(articleFiltered => {
-        if (req.params.id == articleFiltered.id) {
-          console.log(articleFiltered);
-          res.render('../pages/admin/modify.ejs', {
-            article: articleFiltered,
-          })
-        }
+    articles.getAll().then(allArticlesM => {
+      admin.getAll().then(adminAll => {
+        adminAll.filter(adminfiltered => {
+          if (adminfiltered.email == req.user[0].email) {
+            allArticlesM.filter(articleFiltered => {
+              if (req.params.id == articleFiltered.id) {
+                console.log(articleFiltered);
+                res.render('../pages/admin/modify.ejs', {
+                  layout: '../layouts/admin',
+                  allArticles: allArticlesM,
+                  article: articleFiltered,
+                  profil: adminfiltered
+                })
+              }
+            })
+          }
+        })
       })
     })
   },
@@ -170,22 +217,22 @@ const adminController = {
     })
   },
 
-  deleteArticle(req, res) {
-    articles.getAll().then(articles => {
-      articles.filter((articleFiltered) => {
-        if (articleFiltered.id === req.parmas.id) {
-          // if (req.isAuthenticated()) {
-          articles.addArticle(insertArticle).then(result => {
-            console.log("RESULT", result);
-          }).catch(err => { console.log(err, 'ERROR ADD ARTICLE adminController (insertAticle)'); })
-          res.redirect('/newarticle');
-          // } else {
-          //   res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
-          // }
-        }
-      });
-    }).catch(err => { console.log(err, ' une erreur sur articlesController') })
-  }
+  // deleteArticle(req, res) {
+  //   articles.getAll().then(articles => {
+  //     articles.filter((articleFiltered) => {
+  //       if (articleFiltered.id === req.parmas.id) {
+  //         // if (req.isAuthenticated()) {
+  //         articles.addArticle(insertArticle).then(result => {
+  //           console.log("RESULT", result);
+  //         }).catch(err => { console.log(err, 'ERROR ADD ARTICLE adminController (insertAticle)'); })
+  //         res.redirect('/newarticle');
+  //         // } else {
+  //         //   res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
+  //         // }
+  //       }
+  //     });
+  //   }).catch(err => { console.log(err, ' une erreur sur articlesController') })
+  // }
 }
 
 module.exports = adminController;
