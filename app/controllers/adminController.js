@@ -217,22 +217,23 @@ const adminController = {
     })
   },
 
-  // deleteArticle(req, res) {
-  //   articles.getAll().then(articles => {
-  //     articles.filter((articleFiltered) => {
-  //       if (articleFiltered.id === req.parmas.id) {
-  //         // if (req.isAuthenticated()) {
-  //         articles.addArticle(insertArticle).then(result => {
-  //           console.log("RESULT", result);
-  //         }).catch(err => { console.log(err, 'ERROR ADD ARTICLE adminController (insertAticle)'); })
-  //         res.redirect('/newarticle');
-  //         // } else {
-  //         //   res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
-  //         // }
-  //       }
-  //     });
-  //   }).catch(err => { console.log(err, ' une erreur sur articlesController') })
-  // }
+  deleteArticle(req, res) {
+    articles.getAll().then(articles => {
+      articles.filter((articleFiltered) => {
+        if (articleFiltered.id === req.params.id) {
+          // if (req.isAuthenticated()) {
+            admin.deleteArticle(articleFiltered.id).then(result => {
+              console.log("RESULT", result);
+              res.redirect('/newarticle');              
+            }).catch(err => { console.log(err, 'ERROR DELETE ARTICLE adminController (articleFiltered)'); })
+          // } else {
+          //   res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
+          // }
+        }
+      })
+    })
+  }
+
 }
 
 module.exports = adminController;
