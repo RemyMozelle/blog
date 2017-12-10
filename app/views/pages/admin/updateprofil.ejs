@@ -13,44 +13,34 @@
           <div class="row">
             <div class="form-group col-md-6">
               <label for="lastname">Prénom</label>
-              <input type="text" class="form-control" name="name" id="lastname" placeholder="Prénom..." value="">
+              <input type="text" class="form-control" name="name" placeholder="Prénom..." value="<%= profil.name %>">
             </div>
             <div class="form-group col-md-6">
               <label for="surname">Nom</label>
-              <input type="text" class="form-control" name="surname" id="surname" placeholder="Nom..." value=">">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="pseudo">Pseudo</label>
-              <input type="text" class="form-control" name="pseudo" id="pseudo" placeholder="Pseudo..." value="">
+              <input type="text" class="form-control" name="surname" placeholder="Nom..." value="<%= profil.name %>">
             </div>
           </div>
         </div>
         <div class="form-group col-md-4">
           <label for="avatar">Photo</label>
-          <input type="file" id="avatar">
-          <p class="help-block">Format .png .jpeg Maximum 2Mo.</p>
+          <input type="file" name="avatar">
         </div>
       </div>
       <div class="row">
         <div class="form-group col-md-6">
           <label for="emailadress">Adresse mail</label>
-          <input type="text" class="form-control" name="email" id="emailadress" placeholder="email@adress.com" value="">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="oldpassword">Ancien mot de passe</label>
-          <input type="text" class="form-control" id="oldpassword" placeholder="Ancien mot de passe">
-        </div>
-      </div>
-      <div class="row">
-        <div class="form-group col-md-6">
+          <input type="email" class="form-control" name="email" value="<%= profil.email %>">
           <label for="newpassword">Nouveau mot de passe</label>
-          <input type="text" class="form-control" id="newpassword" placeholder="Nouveau mot de passe">
+          <input type="text" class="form-control" name=password placeholder="Nouveau mot de passe">
+          <label for="confirmpassword">Confirmation de mot de passe</label>
+          <input type="text" class="form-control" name="confirm" placeholder="Confirmation de mot de passe">
         </div>
         <div class="form-group col-md-6">
-          <label for="confirmpassword">Confirmation de mot de passe</label>
-          <input type="text" class="form-control" id="confirmpassword" placeholder="Confirmation de mot de passe">
+          <label for="about">About</label>
+          <textarea class="form-control" name="about" type="text" placeholder="a propos de vous" rows="8"></textarea>
         </div>
       </div>
+      <br>
       <div class="text-center">
         <button type="button" class="btn btn-default">
           <a href="/dashboard">Annuler</a>

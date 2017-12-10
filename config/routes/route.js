@@ -20,8 +20,8 @@ route.get('/draft', adminController.draft)
 route.get('/modify/:id', adminController.getModifyArticle)
 route.post('/modify/:id', adminController.modifyArticle)
 route.get('/updateprofil', adminController.getUpdateProfil)
-//route.post('/updateprofil/:id', adminController.updateProfil)
 route.get('/delete/:id', adminController.deleteArticle)
+route.post('/updateprofil', adminController.updateProfileAdmin)
 // FIN ADMIN
 
 //FRONT

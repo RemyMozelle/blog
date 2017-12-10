@@ -18,9 +18,9 @@ const admin = {
     });
   },
 
-  updateProfil(profil, id){
+  updateProfil(profil, email){
     return new Promise((resolve, reject) => {
-      db.getConnection().query(`UPDATE users SET ? WHERE id = ?`, [profil, id], (err, users) => {
+      db.getConnection().query(`UPDATE users SET ? WHERE email = ?`, [profil, email], (err, users) => {
         err ? reject(err) : resolve(users)
       });
     });
