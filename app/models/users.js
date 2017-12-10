@@ -10,7 +10,7 @@ const users = {
   },
 
   insertUsers() {
-    database.getConnection().query('')
+    
   }
 }
 

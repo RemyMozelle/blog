@@ -7,6 +7,9 @@ const adminController = require('../../app/controllers/adminController');
 // require express , passport
 const expressValidator = require('express-validator');
 const passport = require('passport');
+//crypte
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 // ADMIN
 route.get('/dashboard', adminController.dashboard)
 route.get('/newarticle', adminController.newarticle)
@@ -55,19 +58,24 @@ route.post('/register', (req, res) => {
       name: req.body.name,
       surname: req.body.surname,
       email: req.body.email,
-      password: req.body.password
-    }
+      password:req.body.password
+    } 
 
-    db.getConnection().query('INSERT INTO users SET ?', data, (err, result) => {
-      if (err) throw err
-      const id = result.insertId
-      db.getConnection().query(`SELECT id from users where id=${id}`, (err, users) => {
-        req.login(users, (err) => {
-          if(err) throw err
-          res.redirect('/')
+   bcrypt.hash(data.password, saltRounds, function (err, hash) {
+      // Store hash in your password DB.
+     console.log(hash)
+     db.getConnection().query('INSERT INTO users SET ?', data, (err, result) => {
+        console.log(result);
+        if (err) throw err
+        const id = result.insertId
+        db.getConnection().query(`SELECT id from users where id=${id}`, (err, users) => {
+          req.login(users, (err) => {
+            if(err) throw err
+            res.redirect('/')
+          })
         })
       })
-    })
+    });
   }  
 })
 
