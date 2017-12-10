@@ -19,8 +19,8 @@ route.post('/newArticle', adminController.getInsertArticle)
 route.get('/draft', adminController.draft)
 route.get('/modify/:id', adminController.getModifyArticle)
 route.post('/modify/:id', adminController.modifyArticle)
-route.get('/updateprofil/:id', adminController.getUpdateProfil)
-route.post('/updateprofil/:id', adminController.updateProfil)
+/* route.get('/updateprofil/:id', adminController.getUpdateProfil)
+route.post('/updateprofil/:id', adminController.updateProfil) */
 route.get('/delete/:id', adminController.deleteArticle)
 // FIN ADMIN
 
