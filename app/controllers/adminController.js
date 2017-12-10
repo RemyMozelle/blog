@@ -6,7 +6,7 @@ const adminController = {
   dashboard(req, res) {
     // console.log("REQ ", req.user)
     if (req.isAuthenticated()) {
-      articles.getAll().then(articles => {
+      articles.getAll().then(articles => { 
         admin.getAll().then(adminAll => {
           adminAll.filter(adminfiltered => {
             if (adminfiltered.email == req.user[0].email) {
