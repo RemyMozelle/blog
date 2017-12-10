@@ -2,6 +2,7 @@
 <div class="row">
   <!-- 1er article -->
   <% allArticles.forEach(articles => { %>
+    <% if(articles.status === 1) { %>
     <article>
       <div class="col-md-6">
         <div class="thumbnail text-center">
@@ -29,5 +30,6 @@
         </div>
       </div>
     </article>
+    <% } %>
     <% }) %>
 </div>

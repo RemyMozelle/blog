@@ -4,7 +4,7 @@
     <hr class="featurette-divider">
     <!-- Création tous les 2 articles -->
     <% for(let i=0; i < allArticles.length; i++){ %>
-      
+      <% if(allArticles[i].status === 1) { %>
           <div class="row featurette">
             <div class="col-md-7 col-md-push-5">
               <h2 class="featurette-heading">
@@ -30,6 +30,7 @@
             </div>
           </div>
           <hr class="featurette-divider">
+        <% } %>
         <% } %>
           
               <!-- /END THE FEATURETTES -->
