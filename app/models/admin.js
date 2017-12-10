@@ -56,47 +56,13 @@ const admin = {
     });
   },
 
-  deleteArticle(articleToDelete) {
+  deleteArticle(id) {
     return new Promise((resolve, reject) => {
-      db.getConnection().query('DELETE FROM articles WHERE id = ?', articleToDelete,(err, article) => {
-        err ? reject(err) : resolve(article)
+      db.getConnection().query('DELETE FROM articles WHERE id = ?', id, (err, deleteOne) => {
+        err ? reject(err) : resolve(deleteOne)
       })
     });
   }
-
-  // deleteArticle() {
-  //   const error = req.validationErrors();
-
-  //   if (error) {
-  //     res.render('../pages/register.ejs', {
-  //       errors: error
-  //     })
-  //   } else {
-
-  //     db.getConnection().query('INSERT INTO articles SET ?', data, (err, result) => {
-  //       if (err) throw err
-  //       const id = result.insertId
-  //       db.getConnection().query(`SELECT id from articles where id=${id}`, (err, newArticle) => {
-  //         req.login(newArticle, (err) => {
-  //           if (err) throw err
-  //           res.redirect('/dashboard')
-  //         })
-  //       })
-  //     })
-  //   }
-
-  // },
-
-  // updateStatus(){
-  //   return new Promise((resolve, reject) => {
-  //     db.getConnection().query('UPDATE INTO articles SET ?', updateStatus, (err, article) => {
-  //                 admin.query("UPDATE articles SET status ?", { status: 0 });
-
-  //       err ? reject(err) : resolve(article)
-  //     })
-  //   });
-  // }
-
 }
 
 module.exports = admin;

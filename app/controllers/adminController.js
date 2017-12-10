@@ -218,22 +218,17 @@ const adminController = {
   },
 
   deleteArticle(req, res) {
-    articles.getAll().then(articles => {
-      articles.filter((articleFiltered) => {
-        if (articleFiltered.id === req.params.id) {
-          // if (req.isAuthenticated()) {
-            admin.deleteArticle(articleFiltered.id).then(result => {
-              console.log("RESULT", result);
-              res.redirect('/newarticle');              
-            }).catch(err => { console.log(err, 'ERROR DELETE ARTICLE adminController (articleFiltered)'); })
-          // } else {
-          //   res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
-          // }
+    articles.getAll().then(allArticles => {
+      allArticles.filter(articleFiltered => {
+        if (req.params.id == articleFiltered.id) {
+          admin.deleteArticle(articleFiltered.id).then(deleteOne => {
+            console.log(deleteOne);
+            res.redirect('/dashboard');
+          }).catch(err => {console.log(err, `impossible de supprimer l'article`);})
         }
       })
     })
   }
-
 }
 
 module.exports = adminController;
