@@ -48,7 +48,7 @@ route.post('/register', (req, res) => {
   req.checkBody('password', 'le mot de passe ne peut être vide').notEmpty()
 
   const error = req.validationErrors();
-  
+
   if (error) {
     res.render('../pages/register.ejs', {
       errors: error
@@ -59,29 +59,29 @@ route.post('/register', (req, res) => {
       name: req.body.name,
       surname: req.body.surname,
       email: req.body.email,
-      password:req.body.password
-    } 
+      password: req.body.password
+    }
 
-   bcrypt.hash(data.password, saltRounds, function (err, hash) {
+    bcrypt.hash(data.password, saltRounds, function (err, hash) {
       // Store hash in your password DB.
-     console.log(hash)
-     db.getConnection().query('INSERT INTO users SET ?', data, (err, result) => {
+      console.log(hash)
+      db.getConnection().query('INSERT INTO users SET ?', data, (err, result) => {
         console.log(result);
         if (err) throw err
         const id = result.insertId
         db.getConnection().query(`SELECT id from users where id=${id}`, (err, users) => {
           req.login(users, (err) => {
-            if(err) throw err
+            if (err) throw err
             res.redirect('/')
           })
         })
       })
     });
-  }  
+  }
 })
 
 // PARTI LOGIN
-route.post('/login',  
+route.post('/login',
   passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login'
@@ -89,7 +89,9 @@ route.post('/login',
 );
 
 route.get('/login', (req, res) => {
-  res.render('../pages/login.ejs');
+  res.render('../pages/login.ejs', {
+    statusMenu: "non-connecté"
+  });
 })
 
 route.get('/logout', (req, res) => {

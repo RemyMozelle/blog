@@ -5,7 +5,7 @@ const db = require('../../config/database/database');
 const adminController = {
   dashboard(req, res) {
     // console.log("REQ ", req.user)
-    if (req.isAuthenticated()) {
+    // if (req.isAuthenticated()) {
       articles.getAll().then(articles => { 
         admin.getAll().then(adminAll => {
           adminAll.filter(adminfiltered => {
@@ -25,9 +25,9 @@ const adminController = {
           })
         })
       }).catch(err => { console.log(err, ' une erreur sur articlesController') })
-    } else {
-      res.redirect('/login');
-    }
+    // } else {
+    //   res.redirect('/login');
+    // }
   },
 
   newarticle(req, res) {
