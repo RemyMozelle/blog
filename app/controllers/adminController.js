@@ -92,30 +92,48 @@ const adminController = {
     }).catch(err => { console.log(err, ' une erreur sur articlesController') })
   },
 
-  updateProfil(req, res) {
+  getUpdateProfil(req, res) {
     // console.log("REQ USER ",req.user[0].email)
     // Besoin des articles pour les comptabiliser dans le menu admin
-    articles.getAll().then(articles => {
+    articles.getAll().then(allArticlesM => {
       //récupère tous les admin
       admin.getAll().then(adminAll => {
         // filtre tous les admin selon l'adressemail
         adminAll.filter(adminfiltered => {
-          if (adminfiltered.email == req.user[0].email) {
-            if (req.isAuthenticated()) {
-              res.render('../pages/admin/updateprofil.ejs',
-                {
-                  layout: '../layouts/admin',
-                  profil: adminfiltered,
-                  allArticles: articles,
-                }
-              )
-            } else {
-              res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
-            }
+          if (adminfiltered.id == req.user[0].id) {
+            res.render('../pages/admin/updateprofil.ejs', {
+              layout: '../layouts/admin',
+              allArticles: allArticlesM,
+              profil: adminfiltered
+            })
           }
         })
       })
     }).catch(err => { console.log(err, ' une erreur sur articlesController') })
+  },
+
+  updateProfile(req, res) {
+    // const imgArticle = req.files.imgArticle
+    // console.log(imgArticle);
+    const profilToUpdate = {
+      name: req.body.name,
+      surname: req.body.surname,
+      pseudo: req.body.pseudo,
+      email: req.body.email
+    }
+
+    admin.getAll().then(allAdmins => {
+      allAdmins.filter(adminFiltered => {
+        if (req.params.id == adminFiltered.id) {
+          console.log(articleFiltered);
+          admin.updateProfil(profilToUpdate, adminFiltered.id).then(profilToUpdate => {
+            // imgArticle.mv(`./public/img/imgArticles/${imgArticle.name}`, (err) => {
+              err ? console.log(err) : res.redirect('/dashboard')
+            // })
+          }).catch(err => { console.log(err, ' impossible de modifié le profile') })
+        }
+      })
+    })
   },
 
   updateStatus(req, res) {
