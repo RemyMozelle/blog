@@ -217,22 +217,18 @@ const adminController = {
     })
   },
 
-  // deleteArticle(req, res) {
-  //   articles.getAll().then(articles => {
-  //     articles.filter((articleFiltered) => {
-  //       if (articleFiltered.id === req.parmas.id) {
-  //         // if (req.isAuthenticated()) {
-  //         articles.addArticle(insertArticle).then(result => {
-  //           console.log("RESULT", result);
-  //         }).catch(err => { console.log(err, 'ERROR ADD ARTICLE adminController (insertAticle)'); })
-  //         res.redirect('/newarticle');
-  //         // } else {
-  //         //   res.send('Vous devez être connecté pour avoir accèes aux articles ! ')
-  //         // }
-  //       }
-  //     });
-  //   }).catch(err => { console.log(err, ' une erreur sur articlesController') })
-  // }
+  deleteArticle(req, res) {
+    articles.getAll().then(allArticles => {
+      allArticles.filter(articleFiltered => {
+        if (req.params.id == articleFiltered.id) {
+          admin.deleteArticle(articleFiltered.id).then(deleteOne => {
+            console.log(deleteOne);
+            res.redirect('/dashboard');
+          }).catch(err => {console.log(err, `impossible de supprimer l'article`);})
+        }
+      })
+    })
+  }
 }
 
 module.exports = adminController;

@@ -7,28 +7,28 @@ ORANGE : #e75c21;
 
 body{
     font-family: "Nunito";
-    background: #dcdcdc;
+    background: #dedede;
 }
-
-img{
-    height: 250px !important;
-    border-radius: 2%;    
-}
-
 .mesArticles {
-    background: #f1f1f1;
+    /*background: #f5f5f5;
+    border-radius: 5px; */ 
 } 
-
-.btn-default, .btn-default:hover{
-    background-color: transparent;
-    border-color: transparent;
-    cursor: default;    
+.navbar-brand {
+    float: left;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: inherit; 
+    line-height: 20px;
+    border-right: 1px solid #202123; 
 }
-
+.navbar-nav>li>a {
+    border-right: 1px solid #202123; 
+}
 hr{
-    background: #aaa;
+    background: #cecece;
     height: 1px;
-    margin: 10px 10px 0px 10px;
+    margin: 5px 10px 0px 5px;
+    display: none; 
 }
 .navbar{
     background: #2a3f54;
@@ -38,17 +38,46 @@ hr{
 }
 
 .navbar a{
-    color: #17bba0 !important;
-}
+    /*color: #17bba0 !important;*/
+    color : #e2e2e2 !important;
+} 
 
-.navbar a:hover{
-    color: #e75c21 !important;
+.navbar a:hover {
+    /*color: #e75c21 !important;*/
+    color: #17bba0 !important;  
 }
-
+.navbar li:hover, .navbar-header:hover, .dropdown-menu>li>a:hover { 
+    background: #1b2d3e; 
+} 
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover, .dropdown-menu {
+    color: #555;
+    background-color: #1b2d3e !important; 
+}
+.lead {
+    text-align: left !important; 
+    font-size: 14px;
+}
 .btn-comment, .border-comment:hover{
-    background-color: transparent !important;    
-    border-color: transparent !important;
+    border-color: white !important;
     cursor: default !important;
+}
+h1 {  
+    font-size: 24px;
+    text-transform: uppercase;
+}
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+    background: #fff;
+    padding: 15px !important; 
+    margin-bottom: 10px;
+}
+.date {
+    color: #6f6f6f;
+}
+.featurette-heading {
+    margin-top: 0px; 
+    font-size: 22px;
 }
 
 .apercu {
@@ -59,10 +88,28 @@ hr{
 
 /*HOME*/
 .thumbnail{
+    border: none; 
+    padding: 0px; 
+}
+.thumbnail-aside{
     border: none;
     height: 450px;
     padding: 0px;
+    background: #f1f1f1;
+    border-radius: 0px !important; 
 }
+.thumbnail-aside img {
+    border-radius: 165px;
+    width: 75%;
+    padding-top: 15px; 
+    height: auto !important;
+}
+.thumbnail img {
+    height: 300px; 
+}
+.thumbnail-aside .caption {
+    padding-top: 0px !important;
+} 
 
 .thumbnail-aside{
     height: auto;
@@ -76,7 +123,7 @@ hr{
 
 /*ARTICLES*/
 .featurette-divider{
-    margin:20px 0px;
+    margin:5px 0px;
 
 }
 /*FIN ARTICLES*/
@@ -86,4 +133,11 @@ footer{
     padding: 20px 0px;
     background: #2a3f54;
     color: #17bba0;
+}
+
+/* DASHBOARD */ 
+.titre_dashboard {
+    font-size: 24px;
+    margin-top: 0px;
+    margin-left: 12px;
 }

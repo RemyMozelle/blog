@@ -14,11 +14,10 @@ route.get('/published', adminController.published)
 route.get('/updateStatus/:id', adminController.updateStatus)
 route.post('/newArticle', adminController.getInsertArticle)
 route.get('/draft', adminController.draft)
-//route.get('/delete/:id', adminController.deleteArticle)
 route.get('/modify/:id', adminController.getModifyArticle)
 route.post('/modify/:id', adminController.modifyArticle)
 route.get('/updateprofil', adminController.updateProfil)
-// route.post('/newarticle', adminController.insertArticle)
+route.get('/delete/:id', adminController.deleteArticle)
 // FIN ADMIN
 
 //FRONT
