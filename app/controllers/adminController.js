@@ -161,18 +161,15 @@ const adminController = {
         avatar: avatarAdmin.name,
         about: req.body.about
       }
-    
       admin.getAll().then(adminAll => {
         adminAll.filter(adminfiltered => {
-          if (adminfiltered.email == req.user[0].roles) {
-            if (req.isAuthenticated()) {
-              admin.updateProfil(updateProfil, req.user[0].email).then(update => {
-                avatarAdmin.mv(`./public/img/avatars/admin/${updateProfil.avatar}`, (err) => {
-                  req.logout()
-                  err ? console.log(err) : res.redirect('/login')
-                })
+          if (adminfiltered.email == req.user[0].email) {
+            admin.updateProfil(updateProfil, req.user[0].email).then(update => {
+              avatarAdmin.mv(`./public/img/avatars/admin/${avatarAdmin.name}`, (err) => {
+                req.logout()
+                err ? console.log(err) : res.redirect('/login')
               })
-            }
+            })
           }
         })
       })
@@ -217,7 +214,7 @@ const adminController = {
     }*/
     if (req.isAuthenticated() && req.user[0].roles == 'admin') {
       const imgArticle = req.files.imgArticle
-
+      console.log('ok');
       const insertArticle = {
         title: req.body.title,
         content: req.body.content,
@@ -292,7 +289,7 @@ const adminController = {
           if (req.params.id == articleFiltered.id) {
             console.log(articleFiltered);
             admin.modify(updateArticle, articleFiltered.id).then(updateArticle => {
-              imgArticle.mv(`./public/img/imgArticles/${updateArticle.img}`, (err) => {
+              imgArticle.mv(`./public/img/imgArticles/${imgArticle.name}`, (err) => {
                 err ? console.log(err) : res.redirect('/dashboard')
               })
             }).catch(err => { console.log(err, ' impossible de modifié cette article') })
