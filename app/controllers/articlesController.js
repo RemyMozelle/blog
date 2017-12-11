@@ -11,13 +11,13 @@ const articlesController = {
             statusMenu: "connecté",
             allArticles: articles,
             curentUser: req.user,
-            bloger: allBloger[1]
+            bloger: allBloger[0]
           })
         } else {
           res.render('../pages/home.ejs', {
             statusMenu: "non-connecté",
             allArticles: articles,
-            bloger: allBloger[1]
+            bloger: allBloger[0]
           })
         }
       })

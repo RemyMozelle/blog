@@ -5,7 +5,7 @@ const db = require('../../config/database/database');
 const adminController = {
   dashboard(req, res) {
     // console.log("REQ ", req.user)
-    // if (req.isAuthenticated()) {
+    if (req.isAuthenticated() && req.user[0].roles == 'admin') {
       articles.getAll().then(articles => { 
         admin.getAll().then(adminAll => {
           adminAll.filter(adminfiltered => {
@@ -25,13 +25,16 @@ const adminController = {
           })
         })
       }).catch(err => { console.log(err, ' une erreur sur articlesController') })
-    // } else {
-    //   res.redirect('/login');
-    // }
+    } else {
+      
+      res.render('../pages/login.ejs', {
+        errors: 'Vous devez être administrateur pour pouvoir y avoir accès'
+      });
+    }
   },
 
   newarticle(req, res) {
-    if (req.isAuthenticated()) {
+    if (req.isAuthenticated() && req.user[0].roles == 'admin') {
       articles.getAll().then(articles => {
         admin.getAll().then(adminAll => {
           adminAll.filter(adminfiltered => {
@@ -52,12 +55,14 @@ const adminController = {
         })
       }).catch(err => { console.log(err, ' une erreur sur articlesController') })
     } else {
-      res.redirect('/login');
+      res.render('../pages/login.ejs', {
+        errors: 'Vous devez être administrateur pour pouvoir y avoir accès'
+      });
     }
   },
 
   published(req, res) {
-    if (req.isAuthenticated()) {
+    if (req.isAuthenticated() && req.user[0].roles == 'admin') {
       articles.getAll().then(articles => {
         admin.getAll().then(adminAll => {
           adminAll.filter(adminfiltered => {
@@ -78,12 +83,14 @@ const adminController = {
         })
       }).catch(err => { console.log(err, ' une erreur sur articlesController') })
     } else {
-      res.redirect('/login');
+      res.render('../pages/login.ejs', {
+        errors: 'Vous devez être administrateur pour pouvoir y avoir accès'
+      });
     }  
   },
 
   draft(req, res) {
-    if (req.isAuthenticated()) {
+    if (req.isAuthenticated() && req.user[0].roles == 'admin') {
       articles.getAll().then(articles => {
         admin.getAll().then(adminAll => {
           adminAll.filter(adminfiltered => {
@@ -104,12 +111,14 @@ const adminController = {
         })
       }).catch(err => { console.log(err, ' une erreur sur articlesController') })
     } else {
-      res.redirect('/login')
+      res.render('../pages/login.ejs', {
+        errors: 'Vous devez être administrateur pour pouvoir y avoir accès'
+      });
     }  
   },
 
   getUpdateProfil(req, res) {
-    if (req.isAuthenticated()) {
+    if (req.isAuthenticated() && req.user[0].roles == 'admin') {
       // console.log("REQ USER ",req.user[0].email)
       // Besoin des articles pour les comptabiliser dans le menu admin
       articles.getAll().then(articles => {
@@ -134,12 +143,14 @@ const adminController = {
         })
       }).catch(err => { console.log(err, ' une erreur sur articlesController') })
     } else {
-      res.redirect('/login');
+      res.render('../pages/login.ejs', {
+        errors: 'Vous devez être administrateur pour pouvoir y avoir accès'
+      });
     }  
   },
 
   updateProfileAdmin(req, res) {
-    if (req.isAuthenticated()) {
+    if (req.isAuthenticated() && req.user[0].roles == 'admin') {
       const avatarAdmin = req.files.avatar
 
       const updateProfil = {
@@ -153,7 +164,7 @@ const adminController = {
     
       admin.getAll().then(adminAll => {
         adminAll.filter(adminfiltered => {
-          if (adminfiltered.email == req.user[0].email) {
+          if (adminfiltered.email == req.user[0].roles) {
             if (req.isAuthenticated()) {
               admin.updateProfil(updateProfil, req.user[0].email).then(update => {
                 avatarAdmin.mv(`./public/img/avatars/admin/${updateProfil.avatar}`, (err) => {
@@ -166,12 +177,14 @@ const adminController = {
         })
       })
     } else {
-      res.redirect('/login')
+      res.render('../pages/login.ejs', {
+        errors: 'Vous devez être administrateur pour pouvoir y avoir accès'
+      });
     }  
   },
 
   updateStatus(req, res) {
-    if (req.isAuthenticated()) {
+    if (req.isAuthenticated() && req.user[0].roles == 'admin') {
       //récupère tous les articles
       articles.getAll().then(updateStatus => {
         //filtre les articles selon id passé en url
@@ -192,7 +205,9 @@ const adminController = {
         })
       }).catch(err => { console.log(err, 'error sur update status') })
     } else {
-      res.redirect('/login')
+      res.render('../pages/login.ejs', {
+        errors: 'Vous devez être administrateur pour pouvoir y avoir accès'
+      });
     }  
   },
 
@@ -200,7 +215,7 @@ const adminController = {
     /* if (!req.files) {
       return res.status(400).send('No files were uploaded.');
     }*/
-    if (req.isAuthenticated()) {
+    if (req.isAuthenticated() && req.user[0].roles == 'admin') {
       const imgArticle = req.files.imgArticle
 
       const insertArticle = {
@@ -220,12 +235,14 @@ const adminController = {
         err ? console.log(err) : res.redirect('/newarticle')
       })
     } else {
-      res.redirect('/login');
+      res.render('../pages/login.ejs', {
+        errors: 'Vous devez être administrateur pour pouvoir y avoir accès'
+      });
     }  
   },
 
   getModifyArticle(req, res) {
-    if (req.isAuthenticated()) {
+    if (req.isAuthenticated() && req.user[0].roles == 'admin') {
       articles.getAll().then(allArticlesM => {
         admin.getAll().then(adminAll => {
           adminAll.filter(adminfiltered => {
@@ -246,7 +263,9 @@ const adminController = {
         })
       })
     } else {
-      res.redirect('/login');
+      res.render('../pages/login.ejs', {
+        errors: 'Vous devez être administrateur pour pouvoir y avoir accès'
+      });
     }  
   },
 
@@ -256,7 +275,7 @@ const adminController = {
    * @param {*} res 
    */
   modifyArticle(req, res) {
-    if (req.isAuthenticated()) {
+    if (req.isAuthenticated() && req.user[0].roles == 'admin') {
       const imgArticle = req.files.imgArticle
   
       const updateArticle = {
@@ -281,12 +300,14 @@ const adminController = {
         })
       })
     } else {
-      res.redirect('/login');
+      res.render('../pages/login.ejs', {
+        errors: 'Vous devez être administrateur pour pouvoir y avoir accès'
+      });
     }  
   },
 
   deleteArticle(req, res) {
-    if (req.isAuthenticated()) {
+    if (req.isAuthenticated() && req.user[0].roles == 'admin') {
       articles.getAll().then(allArticles => {
         allArticles.filter(articleFiltered => {
           if (req.params.id == articleFiltered.id) {
@@ -298,7 +319,9 @@ const adminController = {
         })
       })
     } else {
-      res.redirect('/login');
+      res.render('../pages/login.ejs', {
+        errors: 'Vous devez être administrateur pour pouvoir y avoir accès'
+      });
     }
   }  
 }
