@@ -17,6 +17,7 @@ const articlesController = {
           res.render('../pages/home.ejs', {
             statusMenu: "non-connecté",
             allArticles: articles,
+            curentUser: "noUser",            
             bloger: allBloger[0]
           })
         }
@@ -39,6 +40,7 @@ const articlesController = {
           res.render('../pages/articles.ejs', {
             statusMenu: "non-connecté",
             allArticles: articles,
+            curentUser: "noUser",            
             bloger: allBloger[0]            
           })
         }
@@ -64,6 +66,7 @@ const articlesController = {
               res.render('../pages/article.ejs', {
                 statusMenu: "non-connecté",
                 article: articlefiltered,
+                curentUser: "noUser",            
                 bloger: allBloger[0]                
               })
             }
