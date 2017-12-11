@@ -38,20 +38,23 @@ const isAdmin = require('../passport/passport');
 
 
 route.get('/register', (req, res) => {
-  res.render('../pages/register.ejs')
+  res.render('../pages/register.ejs', {
+    statusMenu: "non-connecté"
+  })
 })
 route.post('/register', (req, res) => {
 
-  req.checkBody('name', 'le prenom ne peut être vide').notEmpty()
-  req.checkBody('surname', 'le nom ne peut être vide').notEmpty()
-  req.checkBody('email', 'l\'email ne peut être vide').notEmpty()
-  req.checkBody('password', 'le mot de passe ne peut être vide').notEmpty()
+  req.checkBody('name', 'Le prénom ne peut être vide.').notEmpty()
+  req.checkBody('surname', 'Le nom ne peut être vide.').notEmpty()
+  req.checkBody('email', 'L\'email ne peut être vide.').notEmpty()
+  req.checkBody('password', 'Le mot de passe ne peut être vide.').notEmpty()
 
   const error = req.validationErrors();
 
   if (error) {
     res.render('../pages/register.ejs', {
-      errors: error
+      errors: error,
+      statusMenu: "non-connecté"
     })
   } else {
 

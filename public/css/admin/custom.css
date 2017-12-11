@@ -97,6 +97,11 @@ ORANGE : #e75c21;
     padding-top: 4px;
 }
 
+.avatar-dashboard{
+    height: 19px;
+    border-radius: 50%;
+}
+
  .col-content{
     padding: 30px 15px;
  }

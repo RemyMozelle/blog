@@ -16,6 +16,12 @@ a:hover {
     background: #f5f5f5;
     border-radius: 5px; 
 }  */
+
+.avatar-dashboard{
+    height: 19px;
+    border-radius: 50%;
+}
+
 .navbar-brand {
     float: left;
     height: 50px;
