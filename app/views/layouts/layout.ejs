@@ -53,24 +53,24 @@
                         <i class="fa fa-sign-in"></i>
                       </a>
                     </li>
-                  <% } %>
-                <%} else if(typeof(statusMenu) == "string"){%>
-                  <%if(statusMenu == "connecté"){%>
-                    <li>
-                      <a href="/updateprofil/">Profil
-                        <img src="/img/avatars/admin/<%=bloger.avatar%>" class="avatar-dashboard" alt="Avatar Bloggeur">
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/logout">Se déconnecter
-                        <i class="fa fa-sign-out"></i>
-                      </a>
-                    </li>
-                  <% } %>
-                <%} else {%>
+                  <%} else if(statusMenu == "connecté"){%>
+                    <%if(curentUser[0].roles == "admin"){%>
+                      <li>
+                        <a href="/updateprofil/">Profil
+                          <img src="/img/avatars/admin/<%=bloger.avatar%>" class="avatar-dashboard" alt="Avatar Bloggeur">
+                        </a>
+                      </li>
+                    <%}%>
+                      <li>
+                        <a href="/logout">Se déconnecter
+                          <i class="fa fa-sign-out"></i>
+                        </a>
+                      </li>
+                  <%}%>
+                <% }else {%>
                   <li>
                     <a href="/register">S'inscrire
-                       <i class="fa fa-pencil-square-o"></i>
+                      <i class="fa fa-pencil-square-o"></i>
                     </a>
                   </li>
                   <li>
