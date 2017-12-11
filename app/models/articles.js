@@ -3,7 +3,7 @@ const db = require('../../config/database/database');
 const articles = {
   getAll() {
     return new Promise((resolve, reject) => {
-      db.getConnection().query('SELECT * FROM articles', (err, allArticle) => {
+      db.getConnection().query('SELECT * FROM articles ORDER BY createAt DESC', (err, allArticle) => {
         err ? reject(err) : resolve(allArticle)
       });
     });

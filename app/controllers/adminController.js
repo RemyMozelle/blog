@@ -151,32 +151,40 @@ const adminController = {
 
   updateProfileAdmin(req, res) {
     if (req.isAuthenticated() && req.user[0].roles == 'admin') {
+      if (req.body.password == req.body.confirm) {
       
-      const avatarAdmin = req.files.avatar
-      const updateProfil = {
-        name: req.body.name,
-        surname: req.body.surname,
-        password: req.body.password,
-        email: req.body.email,
-        avatar: avatarAdmin.name,
-        about: req.body.about
-      }
-      admin.getAll().then(adminAll => {
-        adminAll.filter(adminfiltered => {
-          if (adminfiltered.email == req.user[0].email) {
-            admin.updateProfil(updateProfil, req.user[0].email).then(update => {
-              avatarAdmin.mv(`./public/img/avatars/admin/${avatarAdmin.name}`, (err) => {
-                req.logout()
-                err ? console.log(err) : res.redirect('/login')
+        const avatarAdmin = req.files.avatar
+        const updateProfil = {
+          name: req.body.name,
+          surname: req.body.surname,
+          password: req.body.password,
+          email: req.body.email,
+          avatar: avatarAdmin.name,
+          about: req.body.about
+        }
+        admin.getAll().then(adminAll => {
+          adminAll.filter(adminfiltered => {
+            if (adminfiltered.email == req.user[0].email) {
+              admin.updateProfil(updateProfil, req.user[0].email).then(update => {
+                avatarAdmin.mv(`./public/img/avatars/admin/${avatarAdmin.name}`, (err) => {
+                  req.logout()
+                  err ? console.log(err) : res.redirect('/login')
+                })
               })
-            })
-          }
+            }
+          })
         })
-      })
-    } else {
-      res.render('../pages/login.ejs', {
-        errors: 'Vous devez être administrateur pour pouvoir y avoir accès'
-      });
+        
+      }
+      else if (req.body.password != req.body.confirm) {
+        res.redirect('/updateprofil')
+      }
+
+      else {
+        res.render('../pages/login.ejs', {
+          errors: 'Vous devez être administrateur pour pouvoir y avoir accès'
+        });
+      }
     }  
   },
 
