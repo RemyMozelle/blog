@@ -11,13 +11,14 @@ const articlesController = {
             statusMenu: "connecté",
             allArticles: articles,
             curentUser: req.user,
-            bloger: allBloger[1]
+            bloger: allBloger[0]
           })
         } else {
           res.render('../pages/home.ejs', {
             statusMenu: "non-connecté",
             allArticles: articles,
-            bloger: allBloger[1]
+            curentUser: "noUser",            
+            bloger: allBloger[0]
           })
         }
       })
@@ -33,13 +34,14 @@ const articlesController = {
             statusMenu: "connecté",
             allArticles: articles,
             curentUser: req.user,
-            bloger: allBloger[1]            
+            bloger: allBloger[0]            
           })
         } else {
           res.render('../pages/articles.ejs', {
             statusMenu: "non-connecté",
             allArticles: articles,
-            bloger: allBloger[1]            
+            curentUser: "noUser",            
+            bloger: allBloger[0]            
           })
         }
       })
@@ -58,13 +60,14 @@ const articlesController = {
                 statusMenu: "connecté",
                 article: articlefiltered,
                 curentUser: req.user,
-                bloger: allBloger[1]                
+                bloger: allBloger[0]                
               })
             } else {
               res.render('../pages/article.ejs', {
                 statusMenu: "non-connecté",
                 article: articlefiltered,
-                bloger: allBloger[1]                
+                curentUser: "noUser",            
+                bloger: allBloger[0]                
               })
             }
           }
