@@ -14,7 +14,7 @@ const articles = {
       db.getConnection().query('SELECT * FROM articles ORDER BY createAt DESC LIMIT 0, 4', (err, allArticle) => {
         err ? reject(err) : resolve(allArticle)
       });
-    })
+    });
   },
 
   addArticle(insertArticle) {
