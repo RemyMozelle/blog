@@ -7,8 +7,8 @@
     <hr>
   </div>
   <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">
-      <form method="post" action="/updateprofil" encType="multipart/form-data">
-        <div class="row">
+    <form method="post" action="/updateprofil" encType="multipart/form-data">
+      <div class="row">
         <div class="col-md-8">
           <div class="row">
             <div class="form-group col-md-6">
@@ -17,13 +17,16 @@
             </div>
             <div class="form-group col-md-6">
               <label for="surname">Nom</label>
-              <input type="text" class="form-control" name="surname" placeholder="Nom..." value="<%= profil.name %>">
+              <input type="text" class="form-control" name="surname" placeholder="Nom..." value="<%= profil.surname %>">
             </div>
           </div>
         </div>
         <div class="form-group col-md-4">
           <label for="avatar">Photo</label>
           <input type="file" name="avatar">
+          <figure>
+            <img src="/img/avatars/admin/<%= profil.avatar %>" alt="" style="width:300px;height:300px">
+          </figure>
         </div>
       </div>
       <div class="row">
@@ -37,7 +40,7 @@
         </div>
         <div class="form-group col-md-6">
           <label for="about">About</label>
-          <textarea class="form-control" name="about" type="text" placeholder="a propos de vous" rows="8"></textarea>
+          <textarea class="form-control" name="about" type="text" placeholder="À propos de vous..." rows="8"><%= profil.about %></textarea>
         </div>
       </div>
       <br>
