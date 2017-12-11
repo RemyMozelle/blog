@@ -151,8 +151,8 @@ const adminController = {
 
   updateProfileAdmin(req, res) {
     if (req.isAuthenticated() && req.user[0].roles == 'admin') {
+      
       const avatarAdmin = req.files.avatar
-
       const updateProfil = {
         name: req.body.name,
         surname: req.body.surname,
