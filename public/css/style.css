@@ -95,6 +95,7 @@ h1 {
     padding: 0px; 
 }
 .thumbnail-aside{
+    position: fixed;
     border: none;
     height: 450px;
     padding: 0px;
